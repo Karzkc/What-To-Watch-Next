@@ -1,1 +1,68 @@
 @import "tailwindcss";
+
+.fl {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.flb {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.cp {
+    cursor: pointer;
+}
+
+body {
+    background-color: black;
+    color: white;
+}
+
+
+
+.search-text,
+.search-icon {
+    transition: all 400ms ease-in-out;
+}
+
+.search-nav:hover .search-text {
+    transform: translateY(-22px);
+}
+
+.search-nav:hover .search-icon {
+    transform: translateX(-76px);
+}
+
+.options-rotators:hover {
+    animation: wiggle 0.4s ease-in-out infinite;
+
+}
+
+@keyframes wiggle {
+    0% {
+        transform: rotate(0deg);
+    }
+
+    25% {
+        transform: rotate(5deg);
+    }
+
+    50% {
+        transform: rotate(-5deg);
+    }
+
+    75% {
+        transform: rotate(3deg);
+    }
+
+    100% {
+        transform: rotate(0deg);
+    }
+}
+
+.options-rotators {
+    transition: all 100ms ease-in-out;
+}
