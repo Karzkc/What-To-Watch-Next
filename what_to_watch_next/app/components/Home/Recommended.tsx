@@ -3,7 +3,11 @@ import React from 'react'
 const Recommended = () => {
   return (
     <div>
-      Recommended
+      <div className="trenting">
+        <div className="trending-title">
+          Tred
+        </div>
+      </div>
     </div>
   )
 }

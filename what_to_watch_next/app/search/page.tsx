@@ -1,6 +1,8 @@
 "use client"
 import Link from 'next/link';
 import React, { useEffect, useState } from 'react'
+import Background from '../components/Background';
+
 interface Movie {
     id: number;
     title: string;
@@ -41,7 +43,8 @@ const page = () => {
     }, [query]);
 
     return (
-        <div className="min-h-screen  bg-black text-white flex flex-col items-center pt-16">
+        <div className="min-h-screen  text-white flex flex-col items-center pt-16">
+            <Background />
             <div className="w-full mt-15 max-w-2xl px-4">
                 <input
                     type="text"
