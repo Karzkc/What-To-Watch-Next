@@ -4,7 +4,7 @@ import Link from 'next/link';
 
 const navbar = () => {
   return (
-    <div className='Navbar fixed bg-white  h-15  w-full flb gap-55  text-black'>
+    <div className='Navbar z-10 fixed bg-white  h-15  w-full flb gap-55  text-black'>
       <div className="logo  fl flex-1/4 gap-3 cp">
         <div className="logo-image ">
           <Clapperboard />

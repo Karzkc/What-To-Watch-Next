@@ -1,7 +1,7 @@
 "use client"
 import { useEffect, useState } from "react";
-import Poster from "./components/Home/Poster";
-import Recommended from "./components/Home/Recommended";
+import Poster from "../components/Home/Poster";
+import Recommended from "../components/Home/Recommended";
 
 
 
@@ -10,10 +10,15 @@ export default function Home() {
     <>
       <div className="main">
         <div className="pt-15">
-
-        <Poster />
+          <Poster />
         </div>
-        <Recommended />
+
+        <div className="">
+          <Recommended />
+          
+        </div>
+
+
       </div>
     </>
   )

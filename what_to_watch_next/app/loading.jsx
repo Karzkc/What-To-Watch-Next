@@ -1,6 +1,6 @@
 
 import Image from "next/image";
-import Background from './/components/Background';
+import Background from 'components/Background';
 export default function Loading() {
   return (
     <div className="relative -z-10 flex items-center justify-center h-screen overflow-hidden bg-transparent">
