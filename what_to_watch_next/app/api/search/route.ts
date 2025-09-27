@@ -13,7 +13,7 @@ export async function GET(req: Request) {
         return NextResponse.json({ error: "TMDB API key not configured" }, { status: 500 });
     }
 
-    const url = `https://api.themoviedb.org/3/search/movie?api_key=${apiKey}&query=${encodeURIComponent(query)}`;
+    const url = `https://api.themoviedb.org/3/search/multi?api_key=${apiKey}&query=${encodeURIComponent(query)}`;
 
     try {
         const res = await fetch(url);

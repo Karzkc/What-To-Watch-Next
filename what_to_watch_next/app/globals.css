@@ -25,18 +25,7 @@ body {
 
 }
 
-.search-text,
-.search-icon {
-    transition: all 400ms ease-in-out;
-}
 
-.search-nav:hover .search-text {
-    transform: translateY(-22px);
-}
-
-.search-nav:hover .search-icon {
-    transform: translateX(-76px);
-}
 
 .options-rotators:hover {
     animation: wiggle 0.4s ease-in-out infinite;

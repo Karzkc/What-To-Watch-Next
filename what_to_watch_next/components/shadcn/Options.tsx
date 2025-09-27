@@ -1,4 +1,4 @@
-import * as React from "react"
+import * as React from "react";
 
 import {
   Select,
@@ -8,27 +8,31 @@ import {
   SelectLabel,
   SelectTrigger,
   SelectValue,
-} from "@/components/ui/select"
+} from "@/components/ui/select";
 
-export function Options({ params, label, values }: any) {
+interface OptionsProps {
+  params: string;
+  label: string;
+  values: string[];
+  onValueChange?: (value: string) => void;
+}
+
+export function Options({ params, label, values, onValueChange }: OptionsProps) {
   return (
-    <Select>
+    <Select onValueChange={onValueChange}>
       <SelectTrigger className="w-[180px]">
         <SelectValue placeholder={params} />
       </SelectTrigger>
       <SelectContent>
         <SelectGroup>
           <SelectLabel>{label}</SelectLabel>
-          {
-            values.map((val: any, idx: number) => (
-              <SelectItem key={idx} value={val}>
-                {val}
-              </SelectItem>
-            ))
-          }
-
+          {values.map((val: string, idx: number) => (
+            <SelectItem key={idx} value={val}>
+              {val}
+            </SelectItem>
+          ))}
         </SelectGroup>
       </SelectContent>
     </Select>
-  )
+  );
 }

@@ -1,54 +1,75 @@
 "use client";
 
-import * as React from "react"
+import * as React from "react";
+import Link from 'next/link';
 import {
   Carousel,
   CarouselContent,
   CarouselItem,
   CarouselNext,
   CarouselPrevious,
-} from "@/components/ui/carousel"
+} from "@/components/ui/carousel";
 import { Options } from "./Options";
+import { Movie } from "@/app/types/movie";
 
+interface SliderProps {
+  params: string;
+  options: boolean;
+  todayData: Movie[];
+  weekData: Movie[];
+  mediaType: "movie" | "tv";
+}
 
-const Slider = ({ params, options }: any) => {
+const Slider = ({ params, options, todayData, weekData, mediaType }: SliderProps) => {
+  const [selectedPeriod, setSelectedPeriod] = React.useState<"today" | "week">("today");
+  
+  const currentData = selectedPeriod === "today" ? todayData : weekData;
+
   return (
-    <div className="w-full max-w-7xl mx-auto mt-12 fl flex-col ">
-
+    <div className="w-full max-w-7xl mx-auto mt-12 flex flex-col">
       <div className="upper-categ self-start flex flex-col ml-5">
-
-        <div className="Category mb-4 text-xl 
-        font-semibold text-white ">
+        <div className="Category mb-4 text-xl font-semibold text-white">
           {params}
         </div>
-        <div className="options ">
-          {options ? <Options params="Top" label="Sort By" values={["Today","This Week","This Month"]} /> : ""}
+        <div className="options">
+          {options ? (
+            <Options 
+              params="Today" 
+              label="Sort By" 
+              values={["Today", "This Week"]} 
+              onValueChange={(value: string) => {
+                setSelectedPeriod(value === "Today" ? "today" : "week");
+              }}
+            />
+          ) : ""}
         </div>
       </div>
       <div className="categ flex justify-between flex-col gap-10 mt-5 w-full">
-        <Carousel>
+        <Carousel opts={{ align: "start", loop: false }}>
           <CarouselContent>
-            {Array.from({ length: 10 }).map((_, index) => (
+            {currentData.map((item) => (
               <CarouselItem
-                key={index}
+                key={item.id}
                 className="basis-1/2 md:basis-1/3 lg:basis-1/5"
               >
-                <div className="p-4">
-                  <div className="flex items-center justify-center h-40 
-                  bg-purple-900/40 text-white rounded-lg shadow-md ">
-                    Item {index + 1}
+                <Link href={`details/${mediaType}/${item.id}`}>
+                  <div className="p-1">
+                    <img
+                      src={`https://image.tmdb.org/t/p/w500${item.poster_path}`}
+                      alt={item.title || item.name}
+                      className="rounded-lg shadow-md w-full h-full object-cover transition-transform hover:scale-105"
+                    />
                   </div>
-                </div>
+                </Link>
               </CarouselItem>
             ))}
           </CarouselContent>
-          <CarouselPrevious />
-          <CarouselNext />
+          <CarouselPrevious className="hidden sm:flex" />
+          <CarouselNext className="hidden sm:flex" />
         </Carousel>
       </div>
     </div>
+  );
+};
 
-  )
-}
-
-export default Slider
+export default Slider;

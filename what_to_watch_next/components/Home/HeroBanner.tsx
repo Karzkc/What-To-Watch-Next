@@ -24,27 +24,28 @@ const Poster = () => {
 
   return (
     <div
-      className="poster pl-10 border w-full h-128 flex items-center justify-start inset-0 bg-cover bg-center bg-no-repeat"
-      style={{ backgroundImage: `url(${imageUrl})` }}
+      className="banner pl-10 border w-full h-128 flex items-center justify-end gap-20 px-20  
+      "
     >
-      <div
-        className={`poster-content w-[50%] h-76 flex-col items-center justify-center py-10 px-8  gap-10  backdrop-blur-lg rounded-xl shadow-lg ${glassStyle}`}
-      >
-        <div className="content-top flb px-2 ml-1 gap-3 w-44 bg-black/60 backdrop-blur-lg rounded shadow-lg text-white">
+      <div className={`banner-content w-[20%] h-46 fl flex-col justify-self-center self-center  
+          backdrop-blur-lg rounded-xl shadow-lg ${glassStyle}`} >
+
+        <div className="content-top flb px-2 ml-1 gap-3 w-44 bg-black/60 backdrop-blur-lg rounded shadow-2xl text-white">
           <div className="top-rating">8.4</div>
           <div className="top-year">1999</div>
           <div className="top-genre">Drama</div>
         </div>
+
         <div className="content-text">
           <div className="content-title text-5xl font-bold">Fight Club</div>
-          <div className="content-desc text-lg mt-2 font-[600]">
-            A ticking-time-bomb insomniac and a slippery soap salesman channel primal male aggression into a shocking new form of therapy...
-          </div>
         </div>
-        <div className="content-options flex justify-start gap-3 mt-5">
-          <div className="options-trailer">Watch Trailer</div>
-          <div className="content-info">More Info</div>
-        </div>
+
+      </div>
+
+      <div className="stacks w-[30%] h-56
+      border justify-self-end
+      ">
+
       </div>
     </div>
   );

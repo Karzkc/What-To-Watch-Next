@@ -1,6 +1,6 @@
 "use client"
 import { useEffect, useState } from "react";
-import Poster from "../components/Home/Poster";
+import Poster from "../components/Home/HeroBanner";
 import Recommended from "../components/Home/Recommended";
 
 
