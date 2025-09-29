@@ -1,6 +1,9 @@
 import React, { useEffect, useState } from 'react';
 import Slider from "../shadcn/Slider";
 import { Movie } from "@/app/types/movie";
+import Image from 'next/image';
+import Background from '../Background';
+
 
 const Recommended = () => {
   const [moviesTodayData, setMoviesTodayData] = useState<Movie[]>([]); //*today trending movies
@@ -15,7 +18,7 @@ const Recommended = () => {
       setLoading(true);
       setError(null);
 
-      //*fetching - promise.all - all req in one
+      //*fetching - promise.all - all req in one ite
       const [moviesTodayResponse, moviesWeekResponse, showsTodayResponse, showsWeekResponse] = await Promise.all([
         fetch(`/api/trending?period=day&type=movie`),
         fetch(`/api/trending?period=week&type=movie`),
@@ -89,7 +92,19 @@ const Recommended = () => {
   }
 
   return (
-    <div className="w-full max-w-7xl mx-auto space-y-8">
+    <div className="relative w-full max-w-8xl mx-auto space-y-8 "
+    >
+      <div
+        className="absolute inset-0 w-full h-full -z-10"
+        style={{
+          backgroundImage: "url(/aboutbg.png)",
+          backgroundSize: "100vw",
+          backgroundRepeat: "no-repeat",
+          backgroundAttachment: "fixed", // 
+          filter: "blur(12px) brightness(0.8)",
+          
+        }}
+      />
       <section>
         <Slider
           params="Trending Movies"
@@ -100,6 +115,24 @@ const Recommended = () => {
         />
       </section>
 
+      <section>
+        <Slider
+          params="Trending TV Shows"
+          options={true}
+          todayData={showsTodayData}
+          weekData={showsWeekData}
+          mediaType="tv"
+        />
+      </section>
+      <section>
+        <Slider
+          params="Trending TV Shows"
+          options={true}
+          todayData={showsTodayData}
+          weekData={showsWeekData}
+          mediaType="tv"
+        />
+      </section>
       <section>
         <Slider
           params="Trending TV Shows"

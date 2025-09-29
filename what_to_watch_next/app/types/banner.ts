@@ -1,12 +1,12 @@
-export type TrendingItem = {
+export interface SlidesData {
   id: number;
   title?: string;
   name?: string;
   overview?: string;
-  poster_path: string;
-  vote_average?: number;
   release_date?: string;
   first_air_date?: string;
-  genre_ids?: number[];
-  
-};
+  vote_average?: number;
+  poster_path?: string;
+  backdrop_path?:string;
+  type: 'movie' | 'tv';
+}

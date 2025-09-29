@@ -4,7 +4,7 @@ import Link from 'next/link';
 
 const navbar = () => {
   return (
-    <div className='Navbar h-15  w-full flb gap-55 z-10 fixed px-5 
+    <div className='Navbar h-15  w-full flb gap-55 z-100 fixed px-5 
     bg-gradient-to-b from-purple-100 via-purple-200 to-purple-300  backdrop-blur-3xl  text-black'>
       <div className="logo  fl flex-1/4 gap-3 cp">
         <div className="logo-image ">
@@ -17,7 +17,8 @@ const navbar = () => {
       <div className="flb  flex-1/4">
         <div className='cp options-rotators'>Movies</div>
         <div className='cp options-rotators'>TV Shows</div>
-        <div className='cp options-rotators'>About</div>
+        <Link href={'/about'}><div className='cp options-rotators'>About</div></Link>
+        
       </div>
       <Link href={"/search"}>
         <div className="search-nav group  w-80 flex items-center gap-2 px-3 py-2 rounded-md bg-transparent overflow-hidden">
