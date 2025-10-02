@@ -2,11 +2,6 @@
 import { useEffect, useState } from "react";
 import Poster from "../components/Home/HeroBanner";
 import Recommended from "../components/Home/Recommended";
-import Image from "next/image";
-Image
-
-
-
 export default function Home() {
   return (
     <>

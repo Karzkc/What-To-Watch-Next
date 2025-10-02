@@ -13,30 +13,30 @@ import { Options } from "./Options";
 import { Movie } from "@/app/types/movie";
 
 interface SliderProps {
-  params: string;
-  options: boolean;
-  todayData: Movie[];
-  weekData: Movie[];
-  mediaType: "movie" | "tv";
+  params?: string;
+  options?: boolean;
+  todayData?: Movie[];
+  weekData?: Movie[];
+  mediaType?: "movie" | "tv";
 }
 
 const Slider = ({ params, options, todayData, weekData, mediaType }: SliderProps) => {
   const [selectedPeriod, setSelectedPeriod] = React.useState<"today" | "week">("today");
-  
+
   const currentData = selectedPeriod === "today" ? todayData : weekData;
 
   return (
     <div className="w-full max-w-7xl mx-auto mt-12 flex flex-col">
-      <div className="upper-categ self-start flex flex-col ml-5 backdrop-blur-3xl p-5 rounded-xl bg-white/20 ">
-        <div className="Category mb-4 text-xl font-semibold text-black font-forum">
+      <div className="upper-categ self-start flex flex-col backdrop-blur-3xl p-5 rounded-xl  ">
+        <div className="Category mb-4 text-xl font-semibold text-white font-forum">
           {params}
         </div>
         <div className="options">
           {options ? (
-            <Options 
-              params="Today" 
-              label="Sort By" 
-              values={["Today", "This Week"]} 
+            <Options
+              params="Today"
+              label="Sort By"
+              values={["Today", "This Week"]}
               onValueChange={(value: string) => {
                 setSelectedPeriod(value === "Today" ? "today" : "week");
               }}
@@ -47,7 +47,8 @@ const Slider = ({ params, options, todayData, weekData, mediaType }: SliderProps
       <div className="categ flex justify-between flex-col gap-10 mt-5 w-full">
         <Carousel opts={{ align: "start", loop: false }}>
           <CarouselContent>
-            {currentData.map((item) => (
+
+            {currentData && currentData.length > 0 ? (currentData.map((item) => (
               <CarouselItem
                 key={item.id}
                 className="basis-1/2 md:basis-1/3 lg:basis-1/5"
@@ -62,7 +63,9 @@ const Slider = ({ params, options, todayData, weekData, mediaType }: SliderProps
                   </div>
                 </Link>
               </CarouselItem>
-            ))}
+            ))) : (
+              <div className="fl">No Data Available</div>
+            )}
           </CarouselContent>
           <CarouselPrevious className="hidden sm:flex" />
           <CarouselNext className="hidden sm:flex" />

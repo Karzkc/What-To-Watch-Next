@@ -75,6 +75,14 @@ body {
 
 }
 
+.movies-lists{
+    width: 100%;
+    border: 2px solid white;
+    display: flex;
+    align-items: center;
+}
+
+
 @theme inline {
     --radius-sm: calc(var(--radius) - 4px);
     --radius-md: calc(var(--radius) - 2px);

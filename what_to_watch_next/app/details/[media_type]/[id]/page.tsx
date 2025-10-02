@@ -62,7 +62,7 @@ export default async function DetailPage({
       <div className="max-w-5xl mx-auto">
         <div className="flex flex-col md:flex-row gap-8 p-5 bg-black/30 backdrop-blur-2xl">
           <img
-            src={`https://image.tmdb.org/t/p/w200${details.poster_path}`} 
+            src={`https://image.tmdb.org/t/p/w200${details.poster_path}`}
             alt={details.title ?? details.name}
             className="rounded-lg shadow-lg object-cover self-start"
           />
@@ -84,6 +84,17 @@ export default async function DetailPage({
               {media_type === "movie" && (
                 <>
                   <span>{details.runtime} min</span>
+                  <span>•</span>
+                </>
+              )}
+              {details.genres && details.genres.length > 0 && (
+                <>
+                  {details.genres.map((genre: { id: number; name: string }, index: number) => (
+                    <span key={genre.id}>
+                      {genre.name}
+                      {index !== details.genres.length - 1 && ", "}
+                    </span>
+                  ))}
                   <span>•</span>
                 </>
               )}

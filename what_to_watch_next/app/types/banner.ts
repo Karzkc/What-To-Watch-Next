@@ -4,6 +4,7 @@ export interface SlidesData {
   name?: string;
   overview?: string;
   release_date?: string;
+  genres: { id: number; name: string }[];
   first_air_date?: string;
   vote_average?: number;
   poster_path?: string;

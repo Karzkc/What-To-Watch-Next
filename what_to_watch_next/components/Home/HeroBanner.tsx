@@ -122,7 +122,7 @@ const Poster = () => {
               </Button>
             </div>
 
-          {/* title img */}
+            {/* title img */}
             <div className="relative z-10 w-[30%] h-[70%] flex items-center justify-center self-center cp hover:scale-105 ease-in-out duration-300">
               {currSlide?.poster_path && (
                 <Image
@@ -135,16 +135,26 @@ const Poster = () => {
               )}
             </div>
 
-              {/* central content - text n all */}
+            {/* central content - text n all */}
             <div className="relative z-10 w-[50%] flex flex-col justify-center text-white">
-              <div className="flex gap-3 w-fit px-3 py-1 bg-black/60 backdrop-blur-lg rounded shadow-lg text-white mb-3 font-forum">
+              <div className="flex gap-1 w-fit px-3 py-1 bg-black/60 backdrop-blur-lg rounded shadow-lg text-white mb-3 font-forum">
                 <div>{currSlide.vote_average?.toFixed(1)}⭐</div>
+                <span>•</span>
                 <div>
                   {currSlide.release_date
                     ? currSlide.release_date.split("-")[0]
                     : currSlide.first_air_date?.split("-")[0]}
                 </div>
-                <div>{currSlide.type}</div>
+                <span className='font-extrabold'>•</span>
+                <div>
+                  {currSlide.genres?.map((genre, index) => (
+                    <span key={genre.id}>
+                      {genre.name}
+                      {index !== currSlide.genres.length - 1 && ", "}
+                    </span>
+                  )) ?? <span>no</span>}
+                </div>
+
               </div>
 
               <div className="text-3xl font-playfair font-bold">{currSlide.title || currSlide.name}</div>
@@ -156,7 +166,7 @@ const Poster = () => {
                 </div>
               </Link>
             </div>
-            
+
             {/* prev but */}
 
             <div

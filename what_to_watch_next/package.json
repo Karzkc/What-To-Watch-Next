@@ -11,10 +11,11 @@
   "dependencies": {
     "@radix-ui/react-select": "^2.2.6",
     "@radix-ui/react-slot": "^1.2.3",
+    "@radix-ui/react-toggle": "^1.1.10",
+    "@radix-ui/react-toggle-group": "^1.1.11",
     "class-variance-authority": "^0.7.1",
     "clsx": "^2.1.1",
     "embla-carousel-react": "^8.6.0",
-    "fast-average-color": "^9.5.0",
     "framer-motion": "^12.23.22",
     "lucide-react": "^0.542.0",
     "motion": "^12.23.22",

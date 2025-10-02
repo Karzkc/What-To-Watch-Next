@@ -15,8 +15,8 @@ const navbar = () => {
         </Link>
       </div>
       <div className="flb  flex-1/4">
-        <div className='cp options-rotators'>Movies</div>
-        <div className='cp options-rotators'>TV Shows</div>
+        <Link href={'/movies'}><div className='cp options-rotators'>Movies</div></Link>
+        <Link href={'/shows'}><div className='cp options-rotators'>TV Shows</div></Link>
         <Link href={'/about'}><div className='cp options-rotators'>About</div></Link>
         
       </div>
