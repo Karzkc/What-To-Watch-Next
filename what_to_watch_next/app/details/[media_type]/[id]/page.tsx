@@ -48,7 +48,7 @@ export default async function DetailPage({
   const trailerKey = trailer ? trailer.key : null;
 
   return (
-    <div className="min-h-screen pt-24 px-4 sm:px-8 text-white">
+    <div className="min-h-screen pt-24 px-4 sm:px-8 text-white mb-25">
       <div
         style={{
           backgroundImage: `url(https://image.tmdb.org/t/p/original${details.backdrop_path})`,
@@ -60,20 +60,20 @@ export default async function DetailPage({
       ></div>
 
       <div className="max-w-5xl mx-auto">
-        <div className="flex flex-col md:flex-row gap-8 p-5 backdrop-blur-2xl">
+        <div className="flex flex-col md:flex-row gap-8 p-5 bg-black/30 backdrop-blur-2xl">
           <img
-            src={`https://image.tmdb.org/t/p/w200${details.poster_path}`}
+            src={`https://image.tmdb.org/t/p/w200${details.poster_path}`} 
             alt={details.title ?? details.name}
             className="rounded-lg shadow-lg object-cover self-start"
           />
           <div className="flex-1">
-            <h1 className="text-4xl font-bold mb-2">
+            <h1 className="text-4xl font-playfair font-bold mb-2">
               {details.title ?? details.name}
             </h1>
-            <p className="mb-4 text-lg text-gray-300 italic">
+            <p className="mb-4 text-lg text-gray-300 font-cormorant italic">
               {details.tagline}
             </p>
-            <div className="flex items-center gap-4 mb-4 text-gray-400">
+            <div className="flex items-center gap-4 mb-4 text-gray-400 font-forum">
               <span>
                 {(details.release_date ?? details.first_air_date)?.substring(
                   0,
@@ -92,7 +92,7 @@ export default async function DetailPage({
               </span>
             </div>
             <h2 className="text-xl font-semibold mb-2">Overview</h2>
-            <p className="text-gray-200">{details.overview}</p>
+            <p className="text-gray-200 font-tenor">{details.overview}</p>
           </div>
         </div>
         <div className="fl">

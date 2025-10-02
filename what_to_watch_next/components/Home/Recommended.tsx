@@ -92,18 +92,18 @@ const Recommended = () => {
   }
 
   return (
-    <div className="relative w-full max-w-8xl mx-auto space-y-8 "
+    <div className="trending relative w-full max-w-8xl mx-auto  mb-10"
     >
       <div
         className="absolute inset-0 w-full h-full -z-10"
-        style={{
-          backgroundImage: "url(/aboutbg.png)",
-          backgroundSize: "100vw",
-          backgroundRepeat: "no-repeat",
-          backgroundAttachment: "fixed", // 
-          filter: "blur(12px) brightness(0.8)",
+        // style={{
+        //   // backgroundImage: "url(/aboutbg.png)",
+        //   backgroundSize: "100vw",
+        //   backgroundRepeat: "no-repeat",
+        //   backgroundAttachment: "fixed", // 
+        //   filter: "blur(12px) brightness(0.8)",
           
-        }}
+        // }}
       />
       <section>
         <Slider
@@ -124,24 +124,7 @@ const Recommended = () => {
           mediaType="tv"
         />
       </section>
-      <section>
-        <Slider
-          params="Trending TV Shows"
-          options={true}
-          todayData={showsTodayData}
-          weekData={showsWeekData}
-          mediaType="tv"
-        />
-      </section>
-      <section>
-        <Slider
-          params="Trending TV Shows"
-          options={true}
-          todayData={showsTodayData}
-          weekData={showsWeekData}
-          mediaType="tv"
-        />
-      </section>
+      
     </div>
   );
 };

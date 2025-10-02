@@ -20,8 +20,8 @@ interface OptionsProps {
 export function Options({ params, label, values, onValueChange }: OptionsProps) {
   return (
     <Select onValueChange={onValueChange}>
-      <SelectTrigger className="w-[180px]">
-        <SelectValue placeholder={params} />
+      <SelectTrigger className="w-[180px] font-forum text-white">
+        <SelectValue className="text-white font-bold" placeholder={params} />
       </SelectTrigger>
       <SelectContent>
         <SelectGroup>

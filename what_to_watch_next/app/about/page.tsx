@@ -2,6 +2,7 @@ import React from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
 
+
 const About = () => {
     return (
         <div className="relative w-full min-h-screen flex items-center justify-center z-10 
@@ -52,18 +53,18 @@ const About = () => {
                     </div>
 
                     <h2 className="text-4xl mb-4 
-                    text-white font-bold drop-shadow-purple shadow-purple-800">
+                    text-black font-cinzel font-bold drop-shadow-purple shadow-purple-800">
                         About Me
                     </h2>
 
                     <div className="max-w-2xl w-full  p-6 mb-10
                         border bg-gradient-to-br rounded-xl from-purple-700/90 to-fuchsia-900/70 backdrop-blur-sm shadow-xl shadow-purple-800/80
-                        border-purple-500/60 mx-auto">
+                        border-purple-500/60 mx-auto font-tenor">
 
                         <p className="text-lg leading-relaxed text-center 
                         text-white/90">
-                            Hey, I’m 
-                            <span className="font-semibold text-purple-300">Kartik Khiriya</span>
+                            Hey, I’m&nbsp;
+                            <span className="font-semibold text-purple-300"> Kartik Khiriya</span>
                              — a cinephile and coding enthusiast, currently hooked on building this movie & TV explorer app (and binging something new every time).
                             <br /><br />
 
@@ -78,8 +79,8 @@ const About = () => {
                     rounded-xl bg-gradient-to-br from-purple-700/70 to-fuchsia-900/50  shadow-xl ">
 
                         <span className="text-2xl mb-3 
-                        font-bold text-purple-200 ">Contact & Socials</span>
-                        <p className="text-base text-white/80 mb-5 text-center">
+                        font-bold text-purple-200 font-forum ">Contact & Socials</span>
+                        <p className="text-base text-white/80 mb-5 text-center font-tenor">
                             Love chatting about movies, tech, or want to collaborate? Drop a line or DM—I’d love to connect!
                         </p>
                         <div className="flex flex-wrap justify-center gap-5 mb-2">

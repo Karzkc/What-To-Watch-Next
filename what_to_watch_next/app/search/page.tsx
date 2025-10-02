@@ -49,7 +49,7 @@ const SearchPage = () => {
   }, [query]);
 
   return (
-    <div className="min-h-screen text-white flex flex-col items-center pt-16">
+    <div className="h-[90vh] text-white flex flex-col items-center pt-16">
       <Background />
       <div className="w-full mt-15 max-w-2xl px-4">
         <input
@@ -57,10 +57,11 @@ const SearchPage = () => {
           placeholder="Type to search for movies or TV shows..."
           value={query}
           onChange={(e) => setQuery(e.target.value)}
-          className="w-[43.5%] z-10 p-3 fixed bg-transparent backdrop-blur-3xl border border-gray-700 rounded-md focus:outline-none shadow-lg text-white placeholder-gray-100"
+          className="w-[43.5%] z-10 p-3 fixed bg-transparent backdrop-blur-3xl border border-gray-700 rounded-md focus:outline-none shadow-lg text-white placeholder-gray-
+          placeholder:font-playfair"
         />
 
-        <div className="mt-16 p-4 bg-transparent border overflow-auto border-gray-700 rounded-lg shadow-lg backdrop-blur-3xl max-h-[70vh]">
+        <div className="mt-16 p-4 bg-transparent border overflow-auto border-gray-700 rounded-lg shadow-lg backdrop-blur-3xl max-h-[60vh]">
           {results.length > 0 ? (
             results.map((item) => (
               <Link key={item.id} href={`/details/${item.media_type}/${item.id}`}>
@@ -74,7 +75,7 @@ const SearchPage = () => {
                     />
                   )}
                   <div>
-                    <h1 className="text-2xl px-3 py-2">
+                    <h1 className="text-2xl px-3 py-2 font-playfair font-bold">
                       {item.title || item.name} (
                       {(item.release_date || item.first_air_date)?.slice(0, 4)})
                     </h1>
@@ -83,7 +84,7 @@ const SearchPage = () => {
               </Link>
             ))
           ) : (
-            <p className="mt-6 text-center text-gray-800">
+            <p className="mt-6 text-center text-gray-800 font-playfair">
               {query.length > 2 ? 'No results found.' : 'Type to search movies and TV shows.'}
             </p>
           )}

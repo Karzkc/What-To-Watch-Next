@@ -2,7 +2,9 @@
 @import "tw-animate-css";
 
 @custom-variant dark (&:is(.dark *));
-
+*{
+    box-sizing: border-box;
+}
 .fl {
     display: flex;
     align-items: center;
@@ -22,7 +24,7 @@
 body {
     background-color: black;
     color: white;
-    
+
 
 }
 
@@ -57,6 +59,20 @@ body {
 
 .options-rotators {
     transition: all 100ms ease-in-out;
+}
+
+.hero-but {
+    /* border: 1px solid #e5e7eb; */
+    /* border-radius: 9999px; */
+    font-size: 2rem;
+    /* background-color: #fff; */
+    color: black;
+    transition: transform 0.3s ease-in-out;
+}
+
+.trending{
+    background: linear-gradient(to bottom right, #0f0f1a, #000000);
+
 }
 
 @theme inline {
@@ -167,10 +183,35 @@ body {
 }
 
 @layer base {
-  * {
-    @apply border-border outline-ring/50;
+    * {
+        @apply border-border outline-ring/50;
     }
-  body {
-    @apply bg-background text-foreground;
+
+    body {
+        @apply bg-background text-foreground;
     }
+}
+
+.font-cinzel {
+  font-family: var(--font-cinzel);
+}
+
+.font-playfair {
+  font-family: var(--font-playfair);
+}
+
+.font-josefin {
+  font-family: var(--font-josefin);
+}
+
+.font-tenor {
+  font-family: var(--font-tenor);
+}
+
+.font-cormorant {
+  font-family: var(--font-cormorant);
+}
+
+.font-forum {
+  font-family: var(--font-forum);
 }
