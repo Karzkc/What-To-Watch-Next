@@ -5,14 +5,8 @@ import Note from '@/components/Note';
 import Slider from '@/components/shadcn/Slider';
 import React, { useState, useEffect } from 'react';
 
-const page = () => {
-  // Show genres - keep same or modify if needed
-  const showGenres = {
-    Action: 28, Adventure: 12, Animation: 16, Comedy: 35, Crime: 80,
-    Documentary: 99, Drama: 18, Family: 10751, Fantasy: 14, History: 36,
-    Horror: 27, Music: 10402, Mystery: 9648, Romance: 10749, ScienceFiction: 878,
-    TVMovie: 10770, Thriller: 53, War: 10752, Western: 37,
-  };
+const ShowsPage = () => {
+  
 
   const [showsToday, setShowsToday] = useState([]);
   const [showsWeek, setShowsWeek] = useState([]);
@@ -114,4 +108,4 @@ const page = () => {
   );
 };
 
-export default page;
+export default ShowsPage;

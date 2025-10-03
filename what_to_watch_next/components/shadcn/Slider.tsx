@@ -2,6 +2,7 @@
 
 import * as React from "react";
 import Link from 'next/link';
+
 import {
   Carousel,
   CarouselContent,
@@ -11,6 +12,7 @@ import {
 } from "@/components/ui/carousel";
 import { Options } from "./Options";
 import { Movie } from "@/app/types/movie";
+import Image from "next/image";
 
 interface SliderProps {
   params?: string;
@@ -55,9 +57,11 @@ const Slider = ({ params, options, todayData, weekData, mediaType }: SliderProps
                 >
                   <Link href={`details/${mediaType}/${item.id}`}>
                     <div className="p-1">
-                      <img
+                      <Image
                         src={`https://image.tmdb.org/t/p/w500${item.poster_path}`}
-                        alt={item.title || item.name}
+                        alt={"Poster"}
+                        width={246}
+                        height={369}
                         className="rounded-lg shadow-md w-full h-full object-cover transition-transform hover:scale-105"
                       />
                     </div>

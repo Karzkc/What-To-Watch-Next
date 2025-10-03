@@ -16,3 +16,10 @@ export interface SliderProps {
   weekData: Movie[];
   mediaType: "movie" | "tv";
 }
+
+export interface Video {
+  site: string;
+  type: string;
+  key: string;
+  
+}

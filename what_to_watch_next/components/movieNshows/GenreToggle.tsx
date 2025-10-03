@@ -12,13 +12,13 @@ const showGenres = {
 
 function getGenreNames(genreIds: string[]) {
     return genreIds.map(id => {
-        return Object.entries(showGenres).find(([name, genreId]) => genreId === Number(id))?.[0]
+        return Object.entries(showGenres).find(([, genreId]) => genreId === Number(id))?.[0]
     }).filter(Boolean)
 }
 
 const GenreToggle = ({ mediaType }: { mediaType: 'movie' | 'tv' }) => {
     const [selectedGenres, setSelectedGenres] = useState<string[]>([])
-    const [genreData, setGenreData] = useState<any[]>([])
+    const [genreData, setGenreData] = useState([])
     const [loading, setLoading] = useState(false)
 
     useEffect(() => {

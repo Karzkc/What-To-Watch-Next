@@ -1,7 +1,5 @@
 "use client";
 
-import React, { useState } from "react";
-
 export default function ErrorRetry({ onRetry }: { onRetry: () => void }) {
   return (
     <div className="min-h-screen text-white pt-16 text-center flex flex-col items-center justify-center">

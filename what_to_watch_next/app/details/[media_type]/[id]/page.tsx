@@ -1,4 +1,6 @@
+import { Video } from "@/app/types/movie";
 import Note from "@/components/Note";
+import Image from "next/image";
 import React from "react";
 
 // import ErrorRetry from "@/components/ErrorRetry";
@@ -26,9 +28,10 @@ async function getVideo(mediaType: string, id: string) {
 export default async function DetailPage({
   params,
 }: {
-  params: { media_type: "movie" | "tv"; id: string };
+  params: Promise<{ media_type: "movie" | "tv"; id: string }>;
 }) {
-  const { media_type, id } = params;
+  const { media_type, id } = await params;
+
 
   const [details, videoData] = await Promise.all([
     getDetails(media_type, id),
@@ -44,7 +47,7 @@ export default async function DetailPage({
   }
 
   const trailer = videoData?.results?.find(
-    (video: any) => video.site === "YouTube" && video.type === "Trailer"
+    (video: Video) => video.site === "YouTube" && video.type === "Trailer"
   );
   const trailerKey = trailer ? trailer.key : null;
 
@@ -62,9 +65,11 @@ export default async function DetailPage({
 
       <div className="max-w-5xl mx-auto">
         <div className="flex flex-col md:flex-row gap-8 p-5 bg-black/30 backdrop-blur-2xl">
-          <img
+          <Image
             src={`https://image.tmdb.org/t/p/w200${details.poster_path}`}
             alt={details.title ?? details.name}
+            width={200} 
+            height={300} 
             className="rounded-lg shadow-lg object-cover self-start"
           />
           <div className="flex-1">

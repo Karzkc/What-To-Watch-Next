@@ -26,13 +26,13 @@ const Poster = () => {
         ...apiData.moviesTrending,
         ...apiData.moviesPopular,
         ...apiData.moviesLatest,
-      ].map((item: any) => ({ ...item, type: 'movie' }));
+      ].map((item) => ({ ...item, type: 'movie' }));
 
       const shows = [
         ...apiData.showsTrending,
         ...apiData.showsPopular,
         ...apiData.showsLatest,
-      ].map((item: any) => ({ ...item, title: item.name, type: 'tv' }));
+      ].map((item) => ({ ...item, title: item.name, type: 'tv' }));
 
       setAllData([...movies, ...shows]);
     } catch (error) {

@@ -4,6 +4,8 @@ import Link from 'next/link';
 import React, { useEffect, useState } from 'react';
 import Background from 'components/Background';
 import Note from '@/components/Note';
+import Image from 'next/image';
+
 
 type SearchResult = {
   id: number;
@@ -69,9 +71,11 @@ const SearchPage = () => {
 
                 <div className="flex items-center space-x-4 mt-6 p-4 rounded-lg hover:bg-[#17112a] text-black hover:text-white transition-colors duration-200 cursor-pointer">
                   {item.poster_path && (
-                    <img
+                    <Image
                       src={`https://image.tmdb.org/t/p/w200${item.poster_path}`}
-                      alt={item.title || item.name}
+                      alt={"Movie Poster"}
+                      width={200}
+                      height={294}
                       className="w-24 rounded flex-shrink-0"
                     />
                   )}

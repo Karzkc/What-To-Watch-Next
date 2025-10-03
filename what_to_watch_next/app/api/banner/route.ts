@@ -1,6 +1,6 @@
 import { NextResponse } from "next/server";
 
-export async function GET(req: Request) {
+export async function GET() {
   const apiKey = process.env.TMDB_API_KEY;
   if (!apiKey) {
     console.error("TMDB Key err");
@@ -20,7 +20,7 @@ export async function GET(req: Request) {
   const showGenresUrl = `https://api.themoviedb.org/3/genre/tv/list?api_key=${apiKey}&language=en-US`;
 
   try {
-   
+
     const [
       movieTrending,
       showTrending,
@@ -41,18 +41,18 @@ export async function GET(req: Request) {
       fetch(showGenresUrl).then((res) => res.json()),
     ]);
 
-   
+
     const movieGenreMap = new Map();
     movieGenresRes.genres.forEach((g: { id: number; name: string }) => {
       movieGenreMap.set(g.id, g.name);
     });
-    
+
     const showGenreMap = new Map();
     showGenresRes.genres.forEach((g: { id: number; name: string }) => {
       showGenreMap.set(g.id, g.name);
     });
 
-    
+
     function mapGenresToObjects(genreIds: number[], isMovie: boolean) {
       const genreMap = isMovie ? movieGenreMap : showGenreMap;
       return genreIds.map((id) => ({
@@ -61,9 +61,9 @@ export async function GET(req: Request) {
       }));
     }
 
-    
-    function attachGenres(items: any[], isMovie: boolean) {
-      return items.map((item: any) => ({
+
+    function attachGenres(items: Record<string, unknown>[], isMovie: boolean) {
+      return items.map((item: Record<string, unknown>) => ({
         ...item,
         genres: Array.isArray(item.genre_ids)
           ? mapGenresToObjects(item.genre_ids, isMovie)

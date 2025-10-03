@@ -1,11 +1,12 @@
 import React from 'react'
-import { Search, Film, Clapperboard } from "lucide-react";
+import { Search, Clapperboard } from "lucide-react";
 import Link from 'next/link';
 
 const navbar = () => {
   return (
     <div className='Navbar h-15  w-full flb gap-55 z-100 fixed px-5 
     bg-gradient-to-b from-purple-100/30 via-purple-200/30 to-purple-300/30  backdrop-blur-3xl  text-white  font-[500] font-josefin'>
+      
       <div className="logo  fl flex-1/4 gap-3 cp">
         <div className="logo-image ">
           <Clapperboard />

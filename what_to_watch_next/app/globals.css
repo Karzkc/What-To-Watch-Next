@@ -1,7 +1,10 @@
 @import "tailwindcss";
 @import "tw-animate-css";
+@import url('styles/media-query.css');
+@import url('styles/fonts.css');
 
 @custom-variant dark (&:is(.dark *));
+
 *{
     box-sizing: border-box;
 }
@@ -200,26 +203,4 @@ body {
     }
 }
 
-.font-cinzel {
-  font-family: var(--font-cinzel);
-}
 
-.font-playfair {
-  font-family: var(--font-playfair);
-}
-
-.font-josefin {
-  font-family: var(--font-josefin);
-}
-
-.font-tenor {
-  font-family: var(--font-tenor);
-}
-
-.font-cormorant {
-  font-family: var(--font-cormorant);
-}
-
-.font-forum {
-  font-family: var(--font-forum);
-}
