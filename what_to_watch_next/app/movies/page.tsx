@@ -1,5 +1,6 @@
 "use client"
 import GenreToggle from '@/components/movieNshows/GenreToggle';
+import Note from '@/components/Note';
 import Slider from '@/components/shadcn/Slider';
 import React, { useState, useEffect } from 'react';
 
@@ -47,10 +48,10 @@ const page = () => {
 
   if (loading) {
     return (
-      <div className="w-full max-w-7xl mx-auto">
+      <div className="w-full max-w-7xl mx-auto bg-gradient-to-r from-gray-900 via-purple-900 to-gray-800">
         <div className="animate-pulse space-y-8">
-          <div className="heading-movies w-full flex justify-center pt-20 pb-8 bg-black sticky top-0 z-20">
-            <div className='text-4xl font-bold tracking-tight text-white'>Explore Movies</div>
+          <div className="heading-movies w-full flex justify-center pt-20 pb-8  sticky top-0 z-20">
+            <div className='text-4xl font-bold tracking-tight text-white font-playfair'>Explore Movies</div>
           </div>
           <div className="h-8 rounded w-48 bg-gray-300"></div>
           <div className="h-64 rounded bg-gray-300"></div>
@@ -66,15 +67,17 @@ const page = () => {
   }
 
   return (
-    <div className='Movies relative w-full min-h-screen flex flex-col items-start border border-gray-300 z-10'>
-      <div className="heading-movies w-full flex justify-center pt-20 pb-8 bg-black sticky top-0 z-20">
-        <div className='text-4xl font-bold tracking-tight text-white'>Explore Movies</div>
+    <div className='Movies relative w-full min-h-screen flex flex-col items-start bg-gradient-to-r from-gray-900 via-purple-900 to-gray-800 z-10'>
+      <div className="heading-movies w-full flex justify-center pt-20 pb-8 backdrop-blur-3xl sticky top-0 z-20">
+        <div className='text-4xl font-bold tracking-tight text-white font-playfair'>Explore Movies</div>
       </div>
 
       <div className="movies-sections flex flex-col w-full gap-12 px-12 py-8">
+
         {/* Genre */}
-        <section className="h-48 w-full bg-black rounded-lg " >
-          <GenreToggle data=" " mediaType = "movie" />
+
+        <section className="w-full  rounded-lg bg-black/80 backdrop-blur-3xl " >
+          <GenreToggle mediaType = "movie" />
         </section >
         
         <section>
@@ -87,9 +90,6 @@ const page = () => {
           />
         </section>
 
-
-
-      
         <section>
           <Slider
             params="Latest Releases"
@@ -108,6 +108,8 @@ const page = () => {
             mediaType="movie"
           />
         </section>
+
+        <Note />
       </div>
     </div>
   );

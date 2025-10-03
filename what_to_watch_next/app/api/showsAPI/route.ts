@@ -9,7 +9,7 @@ export async function GET(req: Request) {
 
   const { searchParams } = new URL(req.url);
   const forPeriod = searchParams.get("period");
-  const forGenre = searchParams.get("genre");
+  // const forGenre = searchParams.get("genre");
 
 
   const period = forPeriod === "day" || forPeriod === "week" ? forPeriod : "day";
@@ -18,10 +18,7 @@ export async function GET(req: Request) {
   const topIMDB = `https://api.themoviedb.org/3/tv/top_rated?api_key=${apiKey}&language=en-US&page=1`;
   const showLatest = `https://api.themoviedb.org/3/tv/on_the_air?api_key=${apiKey}&language=en-US&page=1`;
 
-  const genreBasis = forGenre
-    ? `https://api.themoviedb.org/3/discover/tv?api_key=${apiKey}&with_genres=${forGenre}&sort_by=vote_average.desc&vote_count.gte=100`
-    : null;
-
+  
   try {
     const fetches = [
       fetch(showTrending).then(res => res.json()),
@@ -29,9 +26,7 @@ export async function GET(req: Request) {
       fetch(topIMDB).then(res => res.json())
     ];
 
-    if (genreBasis) {
-      fetches.push(fetch(genreBasis).then(res => res.json()));
-    }
+   
 
     const reqObj = await Promise.all(fetches);
 
@@ -39,7 +34,7 @@ export async function GET(req: Request) {
       showsTrending: reqObj[0].results,
       showsLatest: reqObj[1].results,
       topIMDB: reqObj[2].results,
-      genreBasis: genreBasis ? reqObj[3].results : [],
+      
     });
   } catch (error) {
     console.error("Error fetching TMDB data:", error);

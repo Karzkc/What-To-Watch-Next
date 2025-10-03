@@ -3,6 +3,7 @@
 import Link from 'next/link';
 import React, { useEffect, useState } from 'react';
 import Background from 'components/Background';
+import Note from '@/components/Note';
 
 type SearchResult = {
   id: number;
@@ -90,6 +91,8 @@ const SearchPage = () => {
           )}
         </div>
       </div>
+      {(query.length>0 && results.length>0)?"":<Note />}
+      
     </div>
   );
 };

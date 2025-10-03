@@ -1,3 +1,4 @@
+import Note from "@/components/Note";
 import React from "react";
 
 // import ErrorRetry from "@/components/ErrorRetry";
@@ -126,6 +127,7 @@ export default async function DetailPage({
           )}
         </div>
       </div>
+      <Note />
     </div>
   );
 }

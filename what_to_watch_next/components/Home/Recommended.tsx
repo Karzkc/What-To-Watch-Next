@@ -1,80 +1,76 @@
-import React, { useEffect, useState } from 'react';
-import Slider from "../shadcn/Slider";
-import { Movie } from "@/app/types/movie";
-import Image from 'next/image';
-import Background from '../Background';
+import React, { useEffect, useState } from 'react'
+import Slider from "../shadcn/Slider"
+import { Movie } from "@/app/types/movie"
+import Note from '../Note'
 
 
 const Recommended = () => {
-  const [moviesTodayData, setMoviesTodayData] = useState<Movie[]>([]); //*today trending movies
-  const [moviesWeekData, setMoviesWeekData] = useState<Movie[]>([]); //* week movies
-  const [showsTodayData, setShowsTodayData] = useState<Movie[]>([]); //*today trending shows
-  const [showsWeekData, setShowsWeekData] = useState<Movie[]>([]); //* week shows
-  const [loading, setLoading] = useState(true); //* loading (baad me)
-  const [error, setError] = useState<string | null>(null); //* err msg
+  const [moviesTodayData, setMoviesTodayData] = useState<Movie[]>([])
+  const [moviesWeekData, setMoviesWeekData] = useState<Movie[]>([])
+  const [showsTodayData, setShowsTodayData] = useState<Movie[]>([])
+  const [showsWeekData, setShowsWeekData] = useState<Movie[]>([])
+  const [loading, setLoading] = useState(true)
+  const [error, setError] = useState<string | null>(null)
 
   const fetchTrendingData = async () => {
     try {
-      setLoading(true);
-      setError(null);
-
-      //*fetching - promise.all - all req in one ite
+      setLoading(true)
+      setError(null)
       const [moviesTodayResponse, moviesWeekResponse, showsTodayResponse, showsWeekResponse] = await Promise.all([
         fetch(`/api/trending?period=day&type=movie`),
         fetch(`/api/trending?period=week&type=movie`),
         fetch(`/api/trending?period=day&type=tv`),
         fetch(`/api/trending?period=week&type=tv`)
-      ]);
-
-      if (!moviesTodayResponse.ok || !moviesWeekResponse.ok || !showsTodayResponse.ok || !showsWeekResponse.ok) {
-        throw new Error('failed to fetch');
+      ])
+      if (
+        !moviesTodayResponse.ok ||
+        !moviesWeekResponse.ok ||
+        !showsTodayResponse.ok ||
+        !showsWeekResponse.ok
+      ) {
+        throw new Error('Failed to fetch')
       }
-
-      // parsing
-      const [moviesTodayData, moviesWeekData, showsTodayData, showsWeekData] = await Promise.all([
+      const [moviesToday, moviesWeek, showsToday, showsWeek] = await Promise.all([
         moviesTodayResponse.json(),
         moviesWeekResponse.json(),
         showsTodayResponse.json(),
-        showsWeekResponse.json()
-      ]);
-
-      setMoviesTodayData(moviesTodayData.results?.slice(0, 10) || []);
-      setMoviesWeekData(moviesWeekData.results?.slice(0, 10) || []);
-      setShowsTodayData(showsTodayData.results?.slice(0, 10) || []);
-      setShowsWeekData(showsWeekData.results?.slice(0, 10) || []);
-
+        showsWeekResponse.json(),
+      ])
+      setMoviesTodayData(moviesToday.results?.slice(0, 10) || [])
+      setMoviesWeekData(moviesWeek.results?.slice(0, 10) || [])
+      setShowsTodayData(showsToday.results?.slice(0, 10) || [])
+      setShowsWeekData(showsWeek.results?.slice(0, 10) || [])
     } catch (err) {
-      console.error('Error fetching trending data:', err);
-      setError('Failed to load trending data');
-      //* if error - 
-      setMoviesTodayData([]);
-      setMoviesWeekData([]);
-      setShowsTodayData([]);
-      setShowsWeekData([]);
+      console.error('Error fetching trending data:', err)
+      setError('Failed to load trending data')
+      setMoviesTodayData([])
+      setMoviesWeekData([])
+      setShowsTodayData([])
+      setShowsWeekData([])
     } finally {
-      setLoading(false);
+      setLoading(false)
     }
-  };
-
-  useEffect(() => {
-    fetchTrendingData();
-  }, []);
-
-  //*loading animation (add pulse)
-  if (loading) {
-    return (
-      <div className="w-full max-w-7xl mx-auto">
-        <div className="animate-pulse space-y-8">
-          <div className="h-8 rounded w-48 bg-gray-300"></div>
-          <div className="h-64 rounded bg-gray-300"></div>
-          <div className="h-8 rounded w-48 bg-gray-300"></div>
-          <div className="h-64 rounded bg-gray-300"></div>
-        </div>
-      </div>
-    );
   }
 
-  // * error - blue to purple (tmr)
+  useEffect(() => {
+    fetchTrendingData()
+  }, [])
+
+  // Loading state
+  if (loading) {
+    return (
+      <div className="w-full min-h-[320px] mx-auto bg-gradient-to-tr from-gray-900 via-indigo-900 to-purple-900 flex flex-col justify-center items-center ">
+        <Note />
+        <div className="animate-pulse space-y-8 w-full flex flex-col items-center">
+          <div className="h-8 rounded w-48 bg-gray-800 mb-4"></div>
+          <div className="h-64 rounded w-full max-w-xl bg-gray-800"></div>
+        </div>
+        
+      </div>
+    )
+  }
+
+  // Error state
   if (error) {
     return (
       <div className="w-full max-w-7xl mx-auto">
@@ -82,30 +78,22 @@ const Recommended = () => {
           <p className="text-red-500 mb-4">{error}</p>
           <button
             onClick={fetchTrendingData}
-            className="px-4 py-2 bg-purple-500 text-white rounded ease-in-out hover:bg-purple-600 cursor-pointer"
+            className="px-4 py-2 bg-purple-500 text-white rounded hover:bg-purple-600 transition"
           >
             Try Again
           </button>
         </div>
       </div>
-    );
+    )
   }
 
   return (
-    <div className="trending relative w-full max-w-8xl mx-auto  mb-10"
-    >
-      <div
-        className="absolute inset-0 w-full h-full -z-10"
-        // style={{
-        //   // backgroundImage: "url(/aboutbg.png)",
-        //   backgroundSize: "100vw",
-        //   backgroundRepeat: "no-repeat",
-        //   backgroundAttachment: "fixed", // 
-        //   filter: "blur(12px) brightness(0.8)",
-          
-        // }}
-      />
-      <section>
+    <div className="trending relative w-full max-w-8xl mx-auto mb-10 bg-gradient-to-tr from-gray-900 via-indigo-900 to-purple-900 rounded-xl py-8 px-2">
+      <Note />
+
+
+      {/* Trending Movies */}
+      <section className="mb-12">
         <Slider
           params="Trending Movies"
           options={true}
@@ -114,7 +102,7 @@ const Recommended = () => {
           mediaType="movie"
         />
       </section>
-
+      {/* Trending TV Shows */}
       <section>
         <Slider
           params="Trending TV Shows"
@@ -124,9 +112,8 @@ const Recommended = () => {
           mediaType="tv"
         />
       </section>
-      
     </div>
-  );
-};
+  )
+}
 
-export default Recommended;
+export default Recommended

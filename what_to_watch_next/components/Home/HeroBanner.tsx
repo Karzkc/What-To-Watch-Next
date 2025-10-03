@@ -81,7 +81,7 @@ const Poster = () => {
 
 
   return (
-    <div className="banner relative w-full h-128 fl rounded-xl shadow-lg cp overflow-hidden">
+    <div className="banner  relative w-full h-128 fl  shadow-lg cp overflow-hidden bg-gray-900 ">
       {/* framer animation , bw slide or fade */}
       {/* update - slide */}
       {currSlide?.backdrop_path && (

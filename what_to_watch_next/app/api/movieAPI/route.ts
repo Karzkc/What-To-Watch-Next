@@ -9,26 +9,26 @@ export async function GET(req: Request) {
 
     const { searchParams } = new URL(req.url);
     const forPeriod = searchParams.get("period");
-    const forGenre = searchParams.get("genre");
+    // const forGenre = searchParams.get("genre");
 
     const movieTrending = `https://api.themoviedb.org/3/trending/movie/${forPeriod}?api_key=${apiKey}`;
     const topIMDB = `https://api.themoviedb.org/3/movie/top_rated?api_key=${apiKey}`;
     const movieLatest = `https://api.themoviedb.org/3/movie/now_playing?api_key=${apiKey}&language=en-US&page=1`;
 
-    const genreBasis = `https://api.themoviedb.org/3/discover/movie?api_key=${apiKey}&with_genres=${forGenre}&sort_by=vote_average.desc&vote_count.gte=100`
+    
 
     try {
         const reqObj = await Promise.all([
             fetch(movieTrending).then(res => res.json()),
             fetch(movieLatest).then(res => res.json()),
             fetch(topIMDB).then(res => res.json()),
-            fetch(genreBasis).then(res => res.json()),
+            
         ]);
         return NextResponse.json({
             moviesTrending: reqObj[0].results,
             movieLatest: reqObj[1].results,
             topIMDB: reqObj[2].results,
-            genreBasis: reqObj[3].results,
+            
 
         });
     } catch (error) {

@@ -5,10 +5,10 @@ const Footer = () => {
     return (
         <div className="
       footer w-full h-18 z-100 bottom-0 
-     bg-purple-300/40 backdrop-blur-2xl
+     bg-gradient-to-r from-purple-500/10 via-pink-500/10 to-indigo-500/10 p-4 shadow-lg backdrop-blur-3xl   text-white
       flex items-center justify-center
     ">
-            <span className="fl flex-col gap-2 text-black font-[600]">
+            <span className="fl flex-col gap-2  font-[600]">
 
                 <span className='flb gap-2 font-playfair'>
                     Made with ❤️ by Kartik

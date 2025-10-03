@@ -1,6 +1,7 @@
 import React from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
+import Note from '@/components/Note';
 
 
 const About = () => {
@@ -119,8 +120,10 @@ const About = () => {
                         </div>
                         <div className="text-sm text-purple-200 mt-2">Or email: kartikkhiriya3@gmail.com</div>
                     </div>
+                        <Note />
                 </div>
             </section>
+            
         </div>
     );
 };
