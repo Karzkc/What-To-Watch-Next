@@ -35,6 +35,7 @@ body {
 
 .options-rotators:hover {
     animation: wiggle 0.4s ease-in-out infinite;
+    color: rgb(141, 70, 141);
 
 }
 
@@ -63,6 +64,7 @@ body {
 .options-rotators {
     transition: all 100ms ease-in-out;
 }
+
 
 .hero-but {
     /* border: 1px solid #e5e7eb; */
@@ -227,4 +229,11 @@ body {
     }
 }
 
+/* Media query */
+@media (min-width:1210px)  {
+    .Navbar{
+        height: 60px;
+
+    }
+}
 
