@@ -58,11 +58,11 @@ const About = () => {
                         About Me
                     </h2>
 
-                    <div className="max-w-2xl w-full  p-6 mb-10
+                    <div className="max-w-2xl w-full  p-10 lg:p-6 mb-10
                         border bg-gradient-to-br rounded-xl from-purple-700/90 to-fuchsia-900/70 backdrop-blur-sm shadow-xl shadow-purple-800/80
                         border-purple-500/60 mx-auto font-tenor">
 
-                        <p className="text-lg leading-relaxed text-center 
+                        <p className="text-sm lg:text-lg leading-relaxed text-center 
                         text-white/90">
                             Hey, I’m&nbsp;
                             <span className="font-semibold text-purple-300"> Kartik Khiriya</span>
@@ -79,10 +79,10 @@ const About = () => {
                     <div className="max-w-2xl w-full flex flex-col items-center p-6 mt-4
                     rounded-xl bg-gradient-to-br from-purple-700/70 to-fuchsia-900/50  shadow-xl ">
 
-                        <span className="text-2xl mb-3 
+                        <span className="text-2xl mb-3  
                         font-bold text-purple-200 font-forum ">Contact & Socials</span>
-                        <p className="text-base text-white/80 mb-5 text-center font-tenor">
-                            Love chatting about movies, tech, or want to collaborate? Drop a line or DM—I’d love to connect!
+                        <p className=" text-white/80 mb-5 text-center font-tenor text-sm lg:text-lg">
+                            Love chatting about movies, tech, or want to collaborate? Drop a DM—I’d love to connect!
                         </p>
                         <div className="flex flex-wrap justify-center gap-5 mb-2">
                             <Link href="https://www.instagram.com/kartikk_0803/" target="_blank" rel="noopener noreferrer">

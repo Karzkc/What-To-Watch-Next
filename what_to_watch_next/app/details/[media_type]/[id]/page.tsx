@@ -68,8 +68,8 @@ export default async function DetailPage({
           <Image
             src={`https://image.tmdb.org/t/p/w200${details.poster_path}`}
             alt={details.title ?? details.name}
-            width={200} 
-            height={300} 
+            width={200}
+            height={300}
             className="rounded-lg shadow-lg object-cover self-start"
           />
           <div className="flex-1">
@@ -112,21 +112,23 @@ export default async function DetailPage({
             <p className="text-gray-200 font-tenor">{details.overview}</p>
           </div>
         </div>
-        <div className="fl">
+        <div className="fl ">
           {trailerKey ? (
-            <div className="mt-7 fl mx-auto">
-              <div className="w-120 h-70">
+            <div className="mt-7 w-full max-w-xl mx-auto  p-10">
+             
+              <div className="relative w-full pb-[56.25%]"> 
+                
                 <iframe
                   src={`https://www.youtube.com/embed/${trailerKey}`}
                   title={`${details.title ?? details.name} Trailer`}
                   allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
                   allowFullScreen
-                  className="w-full h-full rounded-lg border-0 focus:outline-none"
+                  className="absolute top-0 left-0 w-full h-full rounded-lg border-0"
                 ></iframe>
               </div>
             </div>
           ) : (
-            <div className="w-60 mt-7 fl mx-auto text-white backdrop-blur-2xl">
+            <div className="w-60 mt-7 fl mx-auto text-white backdrop-blur-2xl font-tenor">
               No Trailer Available
             </div>
           )}

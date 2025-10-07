@@ -7,6 +7,9 @@
 
 *{
     box-sizing: border-box;
+    transition: ease-in-out 300ms;
+    
+
 }
 .fl {
     display: flex;
@@ -17,7 +20,7 @@
 .flb {
     display: flex;
     align-items: center;
-    justify-content: space-between;
+    justify-content: space-around;
 }
 
 .cp {
@@ -35,7 +38,7 @@ body {
 
 .options-rotators:hover {
     animation: wiggle 0.4s ease-in-out infinite;
-    color: rgb(141, 70, 141);
+    color: rgb(228, 217, 228);
 
 }
 
@@ -230,10 +233,19 @@ body {
 }
 
 /* Media query */
-@media (min-width:1210px)  {
+@media (max-width:425px)  {
     .Navbar{
-        height: 60px;
-
+        flex-direction: column;
+        justify-content: center;
+        gap:5px;
+        position: absolute;
     }
+    .Navbar>div{
+        padding: 3px;
+    }
+    .nav-links{
+        justify-content: space-between;
+        width: 100%;
+}
 }
 

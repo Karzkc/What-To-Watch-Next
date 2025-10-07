@@ -4,13 +4,13 @@ import React from 'react'
 const Footer = () => {
     return (
         <div className="
-      footer w-full h-18 z-100 bottom-0 
-     bg-gradient-to-r from-purple-500/10 via-pink-500/10 to-indigo-500/10 p-4 shadow-lg backdrop-blur-3xl   text-white
-      flex items-center justify-center
+      footer w-full  z-100 bottom-0  text-sm lg:text-base
+     bg-gradient-to-r from-purple-500/10 via-pink-500/10 to-indigo-500/10 py-1 shadow-lg backdrop-blur-3xl   text-white
+      fl
     ">
             <span className="fl flex-col gap-2  font-[600]">
 
-                <span className='flb gap-2 font-playfair'>
+                <span className='flb gap-2 font-playfair '>
                     Made with ❤️ by Kartik
                     <Link
                         href="https://github.com/karzkc"

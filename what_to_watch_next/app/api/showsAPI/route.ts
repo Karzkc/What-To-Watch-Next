@@ -18,9 +18,7 @@ export async function GET(req: Request) {
     &certification_country=US
     &certification.lte=PG-13
   `.replace(/\s+/g, '');
-  const topIMDB = `https://api.themoviedb.org/3/tv/top_rated?api_key=${apiKey}&language=en-US&page=1&include_adult=false
-    &certification_country=US
-    &certification.lte=PG-13
+  const topIMDB = `https://api.themoviedb.org/3/tv/top_rated?api_key=${apiKey}&language=en-US&page=1
   `.replace(/\s+/g, '');
   const showLatest = `https://api.themoviedb.org/3/tv/on_the_air?api_key=${apiKey}&language=en-US&page=1&include_adult=false
     &certification_country=US
