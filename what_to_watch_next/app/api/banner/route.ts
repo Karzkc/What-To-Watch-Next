@@ -7,20 +7,20 @@ export async function GET() {
     return NextResponse.json({ error: "TMDB key error" }, { status: 500 });
   }
 
-  const movieTrendingUrl = `https://api.themoviedb.org/3/movie/top_rated?api_key=${apiKey}&language=en-US&page=1`;
+ 
+  const movieTrendingUrl = `https://api.themoviedb.org/3/movie/top_rated?api_key=${apiKey}&language=en-US&page=1&include_adult=false`;
   const showTrendingUrl = `https://api.themoviedb.org/3/tv/top_rated?api_key=${apiKey}&language=en-US&page=1`;
 
-  const moviePopularUrl = `https://api.themoviedb.org/3/movie/popular?api_key=${apiKey}&language=en-US&page=1`;
+  const moviePopularUrl = `https://api.themoviedb.org/3/movie/popular?api_key=${apiKey}&language=en-US&page=1&include_adult=false`;
   const showPopularUrl = `https://api.themoviedb.org/3/tv/popular?api_key=${apiKey}&language=en-US&page=1`;
 
-  const movieLatestUrl = `https://api.themoviedb.org/3/movie/now_playing?api_key=${apiKey}&language=en-US&page=1`;
+  const movieLatestUrl = `https://api.themoviedb.org/3/movie/now_playing?api_key=${apiKey}&language=en-US&page=1&include_adult=false`;
   const showLatestUrl = `https://api.themoviedb.org/3/tv/on_the_air?api_key=${apiKey}&language=en-US&page=1`;
 
   const movieGenresUrl = `https://api.themoviedb.org/3/genre/movie/list?api_key=${apiKey}&language=en-US`;
   const showGenresUrl = `https://api.themoviedb.org/3/genre/tv/list?api_key=${apiKey}&language=en-US`;
 
   try {
-
     const [
       movieTrending,
       showTrending,
@@ -41,7 +41,6 @@ export async function GET() {
       fetch(showGenresUrl).then((res) => res.json()),
     ]);
 
-
     const movieGenreMap = new Map();
     movieGenresRes.genres.forEach((g: { id: number; name: string }) => {
       movieGenreMap.set(g.id, g.name);
@@ -52,7 +51,6 @@ export async function GET() {
       showGenreMap.set(g.id, g.name);
     });
 
-
     function mapGenresToObjects(genreIds: number[], isMovie: boolean) {
       const genreMap = isMovie ? movieGenreMap : showGenreMap;
       return genreIds.map((id) => ({
@@ -60,7 +58,6 @@ export async function GET() {
         name: genreMap.get(id) || "Unknown",
       }));
     }
-
 
     function attachGenres(items: Record<string, unknown>[], isMovie: boolean) {
       return items.map((item: Record<string, unknown>) => ({
@@ -71,13 +68,18 @@ export async function GET() {
       }));
     }
 
+    
+    const safeAttachGenres = (items: { adult: boolean }[], isMovie: boolean) => {
+      return attachGenres(items.filter((item:{ adult: boolean }) => !item.adult), isMovie);
+    };
+
     return NextResponse.json({
-      moviesTrending: attachGenres(movieTrending.results.slice(0, 2), true),
-      showsTrending: attachGenres(showTrending.results.slice(0, 2), false),
-      moviesPopular: attachGenres(moviePopular.results.slice(0, 2), true),
-      showsPopular: attachGenres(showPopular.results.slice(0, 2), false),
-      moviesLatest: attachGenres(movieLatest.results.slice(0, 2), true),
-      showsLatest: attachGenres(showLatest.results.slice(0, 2), false),
+      moviesTrending: safeAttachGenres(movieTrending.results.slice(0, 2), true),
+      showsTrending: safeAttachGenres(showTrending.results.slice(0, 2), false),
+      moviesPopular: safeAttachGenres(moviePopular.results.slice(0, 2), true),
+      showsPopular: safeAttachGenres(showPopular.results.slice(0, 2), false),
+      moviesLatest: safeAttachGenres(movieLatest.results.slice(0, 2), true),
+      showsLatest: safeAttachGenres(showLatest.results.slice(0, 2), false),
     });
   } catch (error) {
     console.error("Error fetching TMDB data:", error);
