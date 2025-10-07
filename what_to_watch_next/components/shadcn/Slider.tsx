@@ -48,7 +48,7 @@ const Slider = ({ params, options, todayData, weekData, mediaType }: SliderProps
       <div className="mt-5 w-full  ">
         {/* mobi;e view */}
           
-        <div className="lg:hidden overflow-x-auto pb-4 [&::-webkit-scrollbar]:h-1.5 [&::-webkit-scrollbar-thumb]:rounded-full [&::-webkit-scrollbar-thumb]:bg-gray-900 [&::-webkit-scrollbar-track]:bg-gray-900">
+        <div className="lg:hidden overflow-x-auto pb-4 [&::-webkit-scrollbar]:h-1.5 [&::-webkit-scrollbar-thumb]:rounded-full [&::-webkit-scrollbar-thumb]:bg-gray-600 [&::-webkit-scrollbar-track]:bg-gray-900">
           <div className="flex space-x-4">
 
             {currentData && currentData.map((item) => (
