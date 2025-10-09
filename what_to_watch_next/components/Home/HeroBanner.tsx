@@ -81,7 +81,7 @@ const Poster = () => {
 
 
   return (
-    <div className="banner  relative w-full h-128 fl  shadow-lg cp overflow-hidden bg-gray-900 border ">
+    <div className="banner  relative w-full h-128 fl  shadow-lg cp overflow-hidden bg-gray-900  ">
       {/* framer animation , bw slide or fade */}
       {/* update - slide */}
       {currSlide?.backdrop_path && (
@@ -106,7 +106,7 @@ const Poster = () => {
         {currSlide && (
           <motion.div
             key={currSlide.id}
-            className="content fl w-[40%] gap-5 h-80 z-20 rounded-2xl bg-white/20 backdrop-blur-2xl"
+            className="content fl w-[90%] lg:w-[40%] gap-2 lg:gap-5 h-60 lg:h-80 z-20 rounded-2xl bg-black/10 backdrop-blur-2xl "
             initial={{ opacity: 0, x: 100 }}
             animate={{ opacity: 1, x: 0 }}
             exit={{ opacity: 0, x: -100 }}
@@ -114,16 +114,20 @@ const Poster = () => {
           >
             {/* prev but */}
             <div
-              className="prev-but hero-but absolute left-1 w-10 h-10 fl"
+              className="prev-but hero-but absolute left-1 w-8 h-8 lg:w-10 lg:h-10 fl"
               onClick={() => handleSlidesButton(-1)}
             >
-              <Button variant="secondary" size="icon" className="rounded-full">
-                <ChevronLeftIcon />
+              <Button
+                variant="secondary"
+                size="icon"
+                className="w-8 h-8 lg:w-10 lg:h-10 rounded-full p-0 min-w-0"
+              >
+                <ChevronLeftIcon className="w-4 h-4 lg:w-5 lg:h-5" />
               </Button>
             </div>
 
             {/* title img */}
-            <div className="relative z-10 w-[30%] h-[70%] flex items-center justify-center self-center cp hover:scale-105 ease-in-out duration-300">
+            <div className="relative z-10 w-[35%] lg:w-[30%] h-[60%] lg:h-[70%] flex items-center justify-center self-center cp hover:scale-105 ease-in-out duration-300">
               {currSlide?.poster_path && (
                 <Image
                   src={`https://image.tmdb.org/t/p/w500${currSlide.poster_path}`}
@@ -136,48 +140,59 @@ const Poster = () => {
             </div>
 
             {/* central content - text n all */}
-            <div className="relative z-10 w-[50%] flex flex-col justify-center text-white">
-              <div className="flex gap-1 w-fit px-3 py-1 bg-black/60 backdrop-blur-lg rounded shadow-lg text-white mb-3 font-forum">
-                <div>{currSlide.vote_average?.toFixed(1)}⭐</div>
-                <span>•</span>
-                <div>
-                  {currSlide.release_date
-                    ? currSlide.release_date.split("-")[0]
-                    : currSlide.first_air_date?.split("-")[0]}
-                </div>
-                <span className='font-extrabold'>•</span>
-                <div>
-                  {currSlide.genres?.map((genre, index) => (
-                    <span key={genre.id}>
-                      {genre.name}
-                      {index !== currSlide.genres.length - 1 && ", "}
-                    </span>
-                  )) ?? <span>no</span>}
+            <div className="relative z-10 w-[45%] lg:w-[50%] flex flex-col justify-center text-white">
+              <div className="flex flex-col lg:flex-row gap-1 w-fit px-2 lg:px-3 py-1 bg-black/60 backdrop-blur-lg rounded shadow-lg text-white mb-2 lg:mb-3 font-forum text-xs lg:text-sm">
+                
+                <div className="flex gap-1">
+                  <div>{currSlide.vote_average?.toFixed(1)}⭐</div>
+                  <span>•</span>
+                  <div>
+                    {currSlide.release_date
+                      ? currSlide.release_date.split("-")[0]
+                      : currSlide.first_air_date?.split("-")[0]}
+                  </div>
                 </div>
 
+                {/*Mob Genre */}
+                <div className="flex gap-1">
+                  <span className='font-extrabold'>•</span>
+                  <div>
+                    {currSlide.genres?.map((genre, index) => (
+                      <span key={genre.id}>
+                        {genre.name}
+                        {index !== currSlide.genres.length - 1 && ", "}
+                      </span>
+                    )) ?? <span>no</span>}
+                  </div>
+                </div>
               </div>
 
-              <div className="text-3xl font-playfair font-bold">{currSlide.title || currSlide.name}</div>
+
+              <div className="text-xl lg:text-3xl font-playfair font-bold">{currSlide.title || currSlide.name}</div>
               <Link href={`details/${currSlide?.type}/${currSlide?.id}`}>
-                <div className="details-redirect z-10 mt-8 flex items-center justify-start font-josefin">
-                  <Button variant="outline">
-                    See Details <span className="text-sm text-black"><MdArrowOutward /></span>
+                <div className="details-redirect z-10 mt-4 lg:mt-8 flex items-center justify-start font-josefin">
+                  <Button variant="outline" size="sm" className="lg:size-default text-xs lg:text-sm">
+                    See Details <span className="text-xs lg:text-sm text-black"><MdArrowOutward /></span>
                   </Button>
                 </div>
               </Link>
             </div>
 
-            {/* prev but */}
-
+            {/* next but */}
             <div
-              className="next-but hero-but absolute right-1 w-10 h-10 fl"
+              className="next-but hero-but absolute right-1 w-8 h-8 lg:w-10 lg:h-10 fl"
               onClick={() => handleSlidesButton(1)}
             >
-              <Button variant="secondary" size="icon" className="rounded-full ">
-                <ChevronRightIcon />
+              <Button
+                variant="secondary"
+                size="icon"
+                className="w-8 h-8 lg:w-10 lg:h-10 rounded-full p-0 min-w-0"
+              >
+                <ChevronRightIcon className="w-4 h-4 lg:w-5 lg:h-5" />
               </Button>
             </div>
           </motion.div>
+
         )}
       </AnimatePresence>
     </div>
