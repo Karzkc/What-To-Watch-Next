@@ -6,7 +6,8 @@ export default function ErrorRetry({ onRetry }: { onRetry: () => void }) {
       <p className="mb-4">Failed to load data. Please try again.</p>
       <button
         onClick={onRetry}
-        className="px-4 py-2 bg-blue-600 rounded hover:bg-blue-700 transition"
+        className="px-4 py-2
+         bg-blue-600 rounded hover:bg-blue-700 transition"
       >
         Retry
       </button>

@@ -38,35 +38,45 @@ const SearchPage = () => {
   }, [query]);
 
   return (
-    <div className="h-[100vh] text-white flex flex-col items-center pt-16">
+    <div className="h-[100vh]  flex flex-col items-center pt-16
+    text-white">
       <Background />
       <div className="w-full mt-15 max-w-2xl px-4">
-        {/* 1. The 'fixed' class was removed from here */}
+
+        
         <input
           type="text"
           placeholder="Type to search for movies or TV shows..."
           value={query}
           onChange={(e) => setQuery(e.target.value)}
-          className="w-full z-10 p-3 bg-transparent backdrop-blur-3xl border border-gray-700 rounded-md focus:outline-none shadow-lg text-white placeholder-gray-400 placeholder:font-playfair"
+          className="w-full z-10 p-3 
+          bg-transparent backdrop-blur-3xl border border-gray-700 rounded-md focus:outline-none shadow-lg text-white placeholder-gray-400 placeholder:font-playfair"
         />
         
-        {/* 2. Margin was adjusted from mt-16 to mt-6 */}
-        <div className="mt-6 p-4 bg-transparent border overflow-auto border-gray-700 rounded-lg shadow-lg backdrop-blur-3xl max-h-[60vh]">
+       
+        <div className="mt-6 max-h-[60vh] p-4 bg-transparent border overflow-auto 
+        border-gray-700 rounded-lg shadow-lg backdrop-blur-3xl ">
           {results.length > 0 ? (
             results.map((item) => (
+
+
               <Link key={item.id} href={`/details/${item.media_type}/${item.id}`}>
-                <div className="flex items-center space-x-4 mt-6 p-4 rounded-lg hover:bg-[#17112a] text-black hover:text-white transition-colors duration-200 cursor-pointer">
+                <div className="flex items-center space-x-4 mt-6 p-4 rounded-lg 
+                hover:bg-[#17112a] text-black hover:text-white transition-colors duration-200 cursor-pointer">
                   {item.poster_path && (
                     <Image
+
                       src={`https://image.tmdb.org/t/p/w200${item.poster_path}`}
                       alt={"Movie Poster"}
                       width={200}
                       height={294}
+                      // priority
                       className="w-24 rounded flex-shrink-0"
                     />
                   )}
                   <div>
-                    <h1 className="text-2xl px-3 py-2 font-playfair font-bold">
+                    <h1 className="text-2xl px-3 py-2 
+                    font-playfair font-bold">
                       {item.title || item.name} ({(item.release_date || item.first_air_date)?.slice(0, 4)})
                     </h1>
                   </div>
@@ -74,7 +84,8 @@ const SearchPage = () => {
               </Link>
             ))
           ) : (
-            <p className="mt-6 text-center text-gray-800 font-playfair">
+            <p className="mt-6 text-center 
+            text-gray-800 font-playfair">
               {query.length > 2 ? 'No results found.' : 'Type to search movies and TV shows.'}
             </p>
           )}

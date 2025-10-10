@@ -41,16 +41,19 @@ export async function GET() {
       fetch(showGenresUrl).then((res) => res.json()),
     ]);
 
+    //movies genres
     const movieGenreMap = new Map();
     movieGenresRes.genres.forEach((g: { id: number; name: string }) => {
       movieGenreMap.set(g.id, g.name);
     });
 
+    // shows genre
     const showGenreMap = new Map();
     showGenresRes.genres.forEach((g: { id: number; name: string }) => {
       showGenreMap.set(g.id, g.name);
     });
 
+    // genre into obj
     function mapGenresToObjects(genreIds: number[], isMovie: boolean) {
       const genreMap = isMovie ? movieGenreMap : showGenreMap;
       return genreIds.map((id) => ({
@@ -61,8 +64,10 @@ export async function GET() {
 
     function attachGenres(items: Record<string, unknown>[], isMovie: boolean) {
       return items.map((item: Record<string, unknown>) => ({
+
         ...item,
         genres: Array.isArray(item.genre_ids)
+
           ? mapGenresToObjects(item.genre_ids, isMovie)
           : [],
       }));
@@ -70,6 +75,7 @@ export async function GET() {
 
     
     const safeAttachGenres = (items: { adult: boolean }[], isMovie: boolean) => {
+      
       return attachGenres(items.filter((item:{ adult: boolean }) => !item.adult), isMovie);
     };
 

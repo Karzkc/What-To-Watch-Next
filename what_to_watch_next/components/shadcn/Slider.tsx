@@ -28,7 +28,8 @@ const Slider = ({ params, options, todayData, weekData, mediaType }: SliderProps
   return (
     <div className="w-full max-w-7xl mx-auto mt-12 flex flex-col">
       <div className="upper-categ self-start flex items-center justify-between w-full px-5 mb-10 gap-5">
-        <div className="Category text-2xl font-semibold text-white font-forum">
+        <div className="Category text-2xl font-semibold
+         text-white font-forum">
           {params}
         </div>
         <div className="options">

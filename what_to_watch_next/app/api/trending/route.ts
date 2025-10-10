@@ -14,6 +14,7 @@ export async function GET(req: Request) {
             );
         }
 
+        // * movie or tv filteration
         if (!['movie', 'tv'].includes(mediaType)) {
             return NextResponse.json(
                 { error: "Invalid type. must be 'movie' or 'tv'" },

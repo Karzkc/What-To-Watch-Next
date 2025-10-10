@@ -52,7 +52,8 @@ export default async function DetailPage({
   const trailerKey = trailer ? trailer.key : null;
 
   return (
-    <div className="min-h-screen pt-24 px-4 sm:px-8 text-white mb-25">
+    <div className="min-h-screen pt-24 px-4 sm:px-8 mb-25
+     text-white ">
       <div
         style={{
           backgroundImage: `url(https://image.tmdb.org/t/p/original${details.backdrop_path})`,
@@ -64,7 +65,8 @@ export default async function DetailPage({
       ></div>
 
       <div className="max-w-5xl mx-auto">
-        <div className="flex flex-col md:flex-row gap-8 p-5 bg-black/30 backdrop-blur-2xl">
+        <div className="flex flex-col md:flex-row gap-8 p-5 
+        bg-black/30 backdrop-blur-2xl">
           <Image
             src={`https://image.tmdb.org/t/p/w200${details.poster_path}`}
             alt={details.title ?? details.name}
@@ -76,10 +78,12 @@ export default async function DetailPage({
             <h1 className="text-4xl font-playfair font-bold mb-2">
               {details.title ?? details.name}
             </h1>
-            <p className="mb-4 text-lg text-gray-300 font-cormorant italic">
+            <p className="mb-4 text-lg 
+            text-gray-300 font-cormorant italic">
               {details.tagline}
             </p>
-            <div className="flex items-center gap-4 mb-4 text-gray-400 font-forum">
+            <div className="flex items-center gap-4 mb-4 
+            text-gray-400 font-forum">
               <span>
                 {(details.release_date ?? details.first_air_date)?.substring(
                   0,

@@ -34,7 +34,7 @@ export async function GET(req: Request) {
     }
     const res = await genreObj.json();
 
-  
+    // explicit content filteratiomn
     const genreDataFiltered = Array.isArray(res.results) 
       ? res.results.filter((item:{adult:boolean}) => !item.adult) 
       : [];

@@ -12,6 +12,7 @@ import { motion, AnimatePresence } from "framer-motion";
 const Poster = () => {
   const [allData, setAllData] = useState<SlidesData[]>([]);
   const [currSlide, setCurrSlide] = useState<SlidesData | null>(null);
+
   const indexRef = useRef(0);
   const intervalRef = useRef<NodeJS.Timeout | null>(null);
 
@@ -25,34 +26,40 @@ const Poster = () => {
       const movies = [
         ...apiData.moviesTrending,
         ...apiData.moviesPopular,
+
         ...apiData.moviesLatest,
       ].map((item) => ({ ...item, type: 'movie' }));
 
       const shows = [
         ...apiData.showsTrending,
         ...apiData.showsPopular,
+
         ...apiData.showsLatest,
       ].map((item) => ({ ...item, title: item.name, type: 'tv' }));
 
       setAllData([...movies, ...shows]);
     } catch (error) {
+
       console.error(error);
     }
   };
 
   useEffect(() => {
     getSlidesData();
+
   }, []);
 
   useEffect(() => {
     if (allData.length === 0) return;
 
     setCurrSlide(allData[Math.floor(Math.random() * allData.length)]);
+
     indexRef.current = 0;
 
     const startInterval = () => {
       intervalRef.current = setInterval(() => {
         indexRef.current = (indexRef.current + 1) % allData.length;
+
         setCurrSlide(allData[indexRef.current]);
       }, 5000);
     };
@@ -67,6 +74,7 @@ const Poster = () => {
   const resetInterval = () => {
     if (intervalRef.current) clearInterval(intervalRef.current);
     intervalRef.current = setInterval(() => {
+
       indexRef.current = (indexRef.current + 1) % allData.length;
       setCurrSlide(allData[indexRef.current]);
     }, 5000);
@@ -75,6 +83,7 @@ const Poster = () => {
   const handleSlidesButton = (direction: number) => {
     if (allData.length === 0) return;
     indexRef.current = (indexRef.current + direction + allData.length) % allData.length;
+    
     setCurrSlide(allData[indexRef.current]);
     resetInterval();
   };
@@ -106,7 +115,8 @@ const Poster = () => {
         {currSlide && (
           <motion.div
             key={currSlide.id}
-            className="content fl w-[90%] lg:w-[40%] gap-2 lg:gap-5 h-60 lg:h-80 z-20 rounded-2xl bg-black/10 backdrop-blur-2xl "
+            className="content fl w-[90%] lg:w-[40%] gap-2 lg:gap-5 h-60 lg:h-80 z-20 rounded-2xl 
+            bg-black/10 backdrop-blur-2xl "
             initial={{ opacity: 0, x: 100 }}
             animate={{ opacity: 1, x: 0 }}
             exit={{ opacity: 0, x: -100 }}
@@ -140,8 +150,11 @@ const Poster = () => {
             </div>
 
             {/* central content - text n all */}
-            <div className="relative z-10 w-[45%] lg:w-[50%] flex flex-col justify-center text-white">
-              <div className="flex flex-col lg:flex-row gap-1 w-fit px-2 lg:px-3 py-1 bg-black/60 backdrop-blur-lg rounded shadow-lg text-white mb-2 lg:mb-3 font-forum text-xs lg:text-sm">
+            <div className="relative z-10 w-[45%] lg:w-[50%] flex flex-col justify-center
+             text-white">
+              <div className="flex flex-col lg:flex-row gap-1 w-fit px-2 lg:px-3 py-1
+               bg-black/60 backdrop-blur-lg rounded shadow-lg   mb-2 lg:mb-3 font-forum text-xs lg:text-sm
+               text-white">
                 
                 <div className="flex gap-1">
                   <div>{currSlide.vote_average?.toFixed(1)}⭐</div>
@@ -172,7 +185,8 @@ const Poster = () => {
               <Link href={`details/${currSlide?.type}/${currSlide?.id}`}>
                 <div className="details-redirect z-10 mt-4 lg:mt-8 flex items-center justify-start font-josefin">
                   <Button variant="outline" size="sm" className="lg:size-default text-xs lg:text-sm">
-                    See Details <span className="text-xs lg:text-sm text-black"><MdArrowOutward /></span>
+                    See Details <span className="text-xs lg:text-sm
+                     text-black"><MdArrowOutward /></span>
                   </Button>
                 </div>
               </Link>

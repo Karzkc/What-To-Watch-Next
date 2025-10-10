@@ -56,21 +56,24 @@ const Recommended = () => {
     fetchTrendingData()
   }, [])
 
-  // Loading state
+  
   if (loading) {
     return (
-      <div className="w-full min-h-[320px] mx-auto bg-gradient-to-tr from-gray-900 via-indigo-900 to-purple-900 flex flex-col justify-center items-center ">
+      <div className="w-full min-h-[320px] mx-auto 
+      bg-gradient-to-tr from-gray-900 via-indigo-900 to-purple-900 flex flex-col justify-center items-center ">
         <Note />
         <div className="animate-pulse space-y-8 w-full flex flex-col items-center">
-          <div className="h-8 rounded w-48 bg-gray-800 mb-4"></div>
-          <div className="h-64 rounded w-full max-w-xl bg-gray-800"></div>
+          <div className="h-8 rounded w-48
+           bg-gray-800 mb-4"></div>
+          <div className="h-64 rounded w-full max-w-xl
+           bg-gray-800"></div>
         </div>
         
       </div>
     )
   }
 
-  // Error state
+  // Err
   if (error) {
     return (
       <div className="w-full max-w-7xl mx-auto">
@@ -78,7 +81,8 @@ const Recommended = () => {
           <p className="text-red-500 mb-4">{error}</p>
           <button
             onClick={fetchTrendingData}
-            className="px-4 py-2 bg-purple-500 text-white rounded hover:bg-purple-600 transition"
+            className="px-4 py-2 
+            bg-purple-500 text-white rounded hover:bg-purple-600 transition"
           >
             Try Again
           </button>
@@ -88,11 +92,12 @@ const Recommended = () => {
   }
 
   return (
-    <div className="trending relative w-full max-w-8xl mx-auto mb-10 bg-gradient-to-tr from-gray-900 via-indigo-900 to-purple-900 rounded-xl py-8 px-2">
+    <div className="trending relative w-full max-w-8xl mx-auto mb-10 
+    bg-gradient-to-tr from-gray-900 via-indigo-900 to-purple-900 rounded-xl py-8 px-2">
       <Note />
 
 
-      {/* Trending Movies */}
+      
       <section className="mb-12">
         <Slider
           params="Trending Movies"
@@ -102,7 +107,7 @@ const Recommended = () => {
           mediaType="movie"
         />
       </section>
-      {/* Trending TV Shows */}
+      
       <section>
         <Slider
           params="Trending TV Shows"

@@ -40,7 +40,8 @@ const GenreToggle = ({ mediaType }: { mediaType: 'movie' | 'tv' }) => {
 
     return (
         <div className="w-full p-4 rounded-lg">
-            <div className="Category mb-4 fl text-2xl font-semibold text-white font-forum">
+            <div className="Category mb-4 fl text-2xl font-semibold
+             text-white font-forum">
                 Filter {mediaType === 'tv' ? 'Shows' : 'Movies'} by Genre  <span className='text-lg fl'>(Choose upto 3 Genres)</span>
             </div>
             <ToggleGroup
@@ -57,7 +58,9 @@ const GenreToggle = ({ mediaType }: { mediaType: 'movie' | 'tv' }) => {
                         <ToggleGroupItem
                             key={genreId}
                             value={genreId.toString()}
-                            className="cp flex-1 min-w-[6rem] text-center rounded-md border bg-gradient-to-b from-purple-100/30 via-purple-200/30 to-purple-300/30 text-white hover:bg-purple-200 hover:text-black border-none"
+
+                            className="cp flex-1 min-w-[6rem] text-center rounded-md border 
+                            bg-gradient-to-b from-purple-100/30 via-purple-200/30 to-purple-300/30 text-white hover:bg-purple-200 hover:text-black border-none"
                             disabled={disabled}
                             aria-disabled={disabled}
                         >
@@ -77,7 +80,8 @@ const GenreToggle = ({ mediaType }: { mediaType: 'movie' | 'tv' }) => {
                     todayData={genreData}
                     mediaType={mediaType}
                 />
-                {loading && <div className="text-white mt-15 font-tenor fl">Loading recommendations...</div>}
+                {loading && <div className=" mt-15 
+                text-whitefont-tenor fl">Loading recommendations...</div>}
             </section>
         </div>
     )

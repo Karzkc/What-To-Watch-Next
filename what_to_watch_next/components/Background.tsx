@@ -13,7 +13,8 @@ const Background = () => {
       }}
     >
       
-      <div className="absolute inset-0 bg-black/10"></div>
+      <div className="absolute inset-0
+       bg-black/10"></div>
     </div>
   );
 };
