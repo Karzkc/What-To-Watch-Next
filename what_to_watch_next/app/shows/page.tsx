@@ -73,7 +73,8 @@ const ShowsPage = () => {
   return (
     <div className='Shows relative w-full min-h-screen flex flex-col 
     bg-gradient-to-b from-gray-900 via-blue-900 to-black  items-start z-10'>
-      <div className="heading-shows w-full flex justify-center pt-20 pb-8 backdrop-blur-3xl sticky top-0 z-20">
+
+      <div className="heading-shows w-full flex justify-center pt-20 pb-8 backdrop-blur-3xl sticky sm:top-0 top-12 z-20">
         <div className='text-4xl font-bold tracking-tight 
         text-white font-playfair'>Explore Shows</div>
       </div>
