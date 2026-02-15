@@ -1,23 +1,43 @@
-import mongoose from 'mongoose'
+import mongoose from "mongoose";
 
-const MONGODB_URI = process.env.MONGODB_URI!
+const MONGODB_URI = process.env.MONGODB_URI!;
 
 if (!MONGODB_URI) {
-    throw new Error("MONGO URI not defined!");
+  throw new Error("MONGODB_URI not defined");
 }
 
-let cached = (global as any).mongoose
-if (!cached) {
-    cached = (global as any).mongoose = { conn: null, promise: null }
+interface MongooseCache {
+  conn: typeof mongoose | null;
+  promise: Promise<typeof mongoose> | null;
+}
+
+declare global {
+  // eslint-disable-next-line no-var
+  var mongooseCache: MongooseCache | undefined;
+}
+
+const globalWithMongoose = global as typeof globalThis & {
+  mongooseCache?: MongooseCache;
+};
+
+if (!globalWithMongoose.mongooseCache) {
+  globalWithMongoose.mongooseCache = {
+    conn: null,
+    promise: null,
+  };
 }
 
 export async function dbConnect() {
-    if (cached.conn) {
-        return cached.conn
-    }
-    if (!cached.promise) {
-        cached.promise = mongoose.connect(MONGODB_URI)
-    }
-    cached.conn = await cached.promise;
-    return cached.conn;
+  const cache = globalWithMongoose.mongooseCache!;
+
+  if (cache.conn) {
+    return cache.conn;
+  }
+
+  if (!cache.promise) {
+    cache.promise = mongoose.connect(MONGODB_URI);
+  }
+
+  cache.conn = await cache.promise;
+  return cache.conn;
 }
