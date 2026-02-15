@@ -1,15 +1,12 @@
 import mongoose from "mongoose";
-
+import { MongooseCache } from "./interfaces/mongoose.interfaces";
 const MONGODB_URI = process.env.MONGODB_URI!;
 
 if (!MONGODB_URI) {
   throw new Error("MONGODB_URI not defined");
 }
 
-interface MongooseCache {
-  conn: typeof mongoose | null;
-  promise: Promise<typeof mongoose> | null;
-}
+
 
 declare global {
   // eslint-disable-next-line no-var
