@@ -1,8 +1,15 @@
 import { dbConnect } from "@/lib/db";
-import { Test } from "@/models/test.model";
+import { userModel } from "@/models/user.model";
+import { NextResponse } from "next/server";
+
 
 export async function GET() {
-    await Test.create({ name: "hello" });
-
-    return Response.json({ message: "Inserted" });
+    dbConnect()
+    await userModel.create({
+        name : "kartik",
+        email: "hello@123",
+        password:"1234",
+        role:'guest'
+    })
+    return NextResponse.json("Created and isnerted")
 }
