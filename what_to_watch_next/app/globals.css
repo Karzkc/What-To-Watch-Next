@@ -3,7 +3,7 @@
 @import url('styles/media-query.css');
 @import url('styles/fonts.css');
 
-@custom-variant dark (&:is(.dark *));
+/* @custom-variant dark (&:is(.dark *)); */
 
 *{
     box-sizing: border-box;

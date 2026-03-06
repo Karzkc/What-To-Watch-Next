@@ -7,7 +7,6 @@ if (!MONGODB_URI) {
 }
 
 
-
 declare global {
   // eslint-disable-next-line no-var
   var mongooseCache: MongooseCache | undefined;
@@ -16,6 +15,7 @@ declare global {
 const globalWithMongoose = global as typeof globalThis & {
   mongooseCache?: MongooseCache;
 };
+
 
 if (!globalWithMongoose.mongooseCache) {
   globalWithMongoose.mongooseCache = {
@@ -38,3 +38,4 @@ export async function dbConnect() {
   cache.conn = await cache.promise;
   return cache.conn;
 }
+
