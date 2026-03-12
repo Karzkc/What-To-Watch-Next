@@ -1,5 +1,5 @@
-import { getUserFromRequest } from "@/lib/auth";
-import { dbConnect } from "@/lib/db";
+import { getUserFromRequest } from "@/server/lib/auth";
+import { dbConnect } from "@/server/lib/db";
 import { userModel } from "@/models/user.model";
 import { NextResponse } from "next/server";
 

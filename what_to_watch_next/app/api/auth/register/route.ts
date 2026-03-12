@@ -1,6 +1,6 @@
-import { dbConnect } from "@/lib/db";
-import { registerUser, tokenGenerator } from "@/services/auth.services";
-import { registerSchema } from "@/validators/auth.schema";
+import { dbConnect } from "@/server/lib/db";
+import { registerUser, tokenGenerator } from "@/server/services/auth.services";
+import { registerSchema } from "@/server/validators/auth.schema";
 import { cookies } from "next/headers";
 import { NextResponse } from "next/server";
 
