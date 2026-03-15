@@ -1,9 +1,10 @@
-import { Date, ObjectId } from "mongoose"
+import { Date} from "mongoose"
+import { Types } from "mongoose"
 
 export interface watchlistInfo {
-    _id?: ObjectId
-    userId: ObjectId | string,
-    watchlistItemId?: ObjectId | string,
+    _id?: Types.ObjectId 
+    userId: Types.ObjectId  | string,
+    watchlistItemId?: Types.ObjectId  | string,
     tmdbId?: number,
     mediaType?: 'movie' | 'tv',
     status?: 'planned' | 'watching' | 'completed'

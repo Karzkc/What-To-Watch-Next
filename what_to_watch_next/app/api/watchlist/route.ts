@@ -40,15 +40,26 @@ export async function POST(req: Request) {
 
 }
 
-export async function GET() {
+export async function GET(req:Request) {
     try {
         await dbConnect();
+        const {searchParams} = new URL(req.url)
+        const status = searchParams.get("status")
+
+        if (status && !["toWatch", "watching", "watched"].includes(status)) {
+            return NextResponse.json(
+                {error:"Invalid Status!"},
+                {status:400}
+            )
+        }
         const auth = await getUserFromRequest()
-        const document = await getUserWatchlist(auth.userId)
+        const document = await getUserWatchlist(auth.userId,status)
+
         return NextResponse.json(
             { watchlist: document },
             { status: 200 }
         )
+
     } catch (error) {
         return NextResponse.json(
             { error: error instanceof Error ? error.message : "Server Error" },

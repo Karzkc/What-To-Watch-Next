@@ -16,18 +16,25 @@ export async function addToWatchlist({ userId, tmdbId, mediaType }: watchlistInf
     return createNew
 }
 
-export async function getUserWatchlist(userId: string) {
-    const watchlist = await watchlistModel.find({ userId }).sort({ createdAt: -1 }).lean()
+export async function getUserWatchlist(userId: string, status?: string | null) {
+    const query: { userId: string; status?: string | null } = { userId }
+
+    if (status) {
+        query.status = status
+    }
+
+    const watchlist = await watchlistModel.find(query).sort({ createdAt: -1 }).lean()
+
     return watchlist
 }
 
-export async function updateWatchStatus({ userId, watchlistItemId, status }:watchlistInfo) {
+export async function updateWatchStatus({ userId, watchlistItemId, status }: watchlistInfo) {
     const item = await watchlistModel.findById(watchlistItemId)
     if (!item) {
         throw new Error("Item not Found");
     }
-    
-    if (item.userId.toString() !==userId) {
+
+    if (item.userId.toString() !== userId) {
         throw new Error("Unauthorized");
     }
 
@@ -36,12 +43,12 @@ export async function updateWatchStatus({ userId, watchlistItemId, status }:watc
     return item
 }
 
-export async function removeFromWatchlist({userId , watchlistItemId}:watchlistInfo) {
+export async function removeFromWatchlist({ userId, watchlistItemId }: watchlistInfo) {
     const item = await watchlistModel.findById(watchlistItemId)
     if (!item) {
         throw new Error("Item not found");
     }
-    if (item.userId.toString()!==userId) {
+    if (item.userId.toString() !== userId) {
         throw new Error("Unauthorized");
     }
     const deleteItem = await item.deleteOne()

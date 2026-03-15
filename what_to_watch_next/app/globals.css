@@ -1,7 +1,8 @@
+@import url('styles/fonts.css');
+@import url('styles/media-query.css');
 @import "tailwindcss";
 @import "tw-animate-css";
-@import url('styles/media-query.css');
-@import url('styles/fonts.css');
+
 
 /* @custom-variant dark (&:is(.dark *)); */
 
