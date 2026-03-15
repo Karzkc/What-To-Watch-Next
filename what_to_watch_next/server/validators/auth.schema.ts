@@ -1,5 +1,5 @@
-import mongoose, { Schema } from "mongoose";
-import z, { email } from 'zod'
+        import mongoose, { Schema } from "mongoose";
+        import z, { email } from 'zod'
 
 export const registerSchema = z.object({
     name: z.string()
