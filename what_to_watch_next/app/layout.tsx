@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+
 import {
   Cinzel,
   Josefin_Sans,
@@ -7,9 +8,12 @@ import {
   Cormorant_Garamond,
   Forum,
 } from "next/font/google";
+
 import "./globals.css";
 import Navbar from "components/navbar";
 import Footer from "components/Footer";
+import { Providers } from "@/components/providers/Providers"
+
 
 // 🎬 Font Imports
 const cinzel = Cinzel({
@@ -70,11 +74,13 @@ export default function RootLayout({
       <body
         className={`${cinzel.variable} ${josefin.variable} ${playfair.variable} ${tenor.variable} ${cormorant.variable} ${forum.variable} antialiased`}
       >
-        <div className="">
-          <Navbar />
-        </div>
-        {children}
-        <Footer />
+        <Providers>
+          <div className="">
+            <Navbar />
+          </div>
+          {children}
+          <Footer />
+        </Providers>
       </body>
     </html>
   );

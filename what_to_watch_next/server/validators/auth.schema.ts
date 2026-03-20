@@ -1,5 +1,5 @@
-        import mongoose, { Schema } from "mongoose";
-        import z, { email } from 'zod'
+import mongoose, { Schema } from "mongoose";
+import z, { email } from 'zod'
 
 export const registerSchema = z.object({
     name: z.string()
@@ -18,7 +18,9 @@ export const registerSchema = z.object({
 
 export const loginSchema = z.object({
     email: z.email("Invalid email address").trim().nonempty(),
-    password: z.string().min(6, { message: "Password must be more than 6 characters!" }).trim()
+    password: z.string()
+        .min(1, "Password is required")
+        .trim()
 });
 
 export type registerType = z.infer<typeof registerSchema>

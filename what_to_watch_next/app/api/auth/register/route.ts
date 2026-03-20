@@ -4,6 +4,8 @@ import { registerSchema } from "@/server/validators/auth.schema";
 import { cookies } from "next/headers";
 import { NextResponse } from "next/server";
 
+import { ZodError } from "zod"; //upgr 2 - ui errors
+
 export async function POST(req: Request) {
   try {
     await dbConnect();
@@ -14,7 +16,7 @@ export async function POST(req: Request) {
 
     const user = await registerUser(parsedData);
 
-    const token = await tokenGenerator(user._id.toString(), user.role);
+    const token = await tokenGenerator(user._id.toString(), user.role!);
 
     const cookie = await cookies();
     cookie.set("token", token, {
@@ -29,10 +31,27 @@ export async function POST(req: Request) {
       { message: "User registered successfully" },
       { status: 201 }
     );
+
   } catch (error) {
+    //upgr2 - zod err for reg ui
+    if (error instanceof ZodError) {
+      const fieldErrors: Record<string,string> = {}
+      error.issues.forEach((err)=>{
+        const field = err.path[0] as string
+        fieldErrors[field] = err.message
+
+      })
+      return NextResponse.json(
+        {errors:fieldErrors},
+        {status:400}
+      )
+    }
     return NextResponse.json(
-      { error: error instanceof Error ? error.message : "Server Error" },
-      { status: 500 }
-    );
+      {error:error instanceof Error ? error.message:'Server Error'},
+      {status:400}
+    )
+   
+   
   }
 }
+

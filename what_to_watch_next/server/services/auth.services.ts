@@ -32,7 +32,7 @@ export async function loginUser(email: string, password: string) {
         throw new Error("Invalid Credentials!")
     }
 
-    const isCorrect = bcrypt.compare(password, user.password || "")
+    const isCorrect =  await bcrypt.compare(password, user.password || "")
     if (!isCorrect) {
         throw new Error("Invalid Credentials!");
     }
@@ -44,9 +44,9 @@ export async function loginUser(email: string, password: string) {
 
 }
 
-export async function tokenGenerator(userID: string, role: string) {
+export async function tokenGenerator(userId: string, role: string) {
     return jwt.sign(
-        { userID, role },
+        { userId, role },
         JWT_SECRET as string,
         { expiresIn: "2d" }
     )
