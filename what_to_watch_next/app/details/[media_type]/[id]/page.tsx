@@ -1,9 +1,7 @@
 import { Video } from "@/app/types/movie";
 import Note from "@/components/Note";
 import Image from "next/image";
-import React from "react";
-
-// import ErrorRetry from "@/components/ErrorRetry";
+import WatchlistButton from "@/components/watchlist/WatchlistButton"
 
 async function getDetails(mediaType: string, id: string) {
   const apiKey = process.env.TMDB_API_KEY;
@@ -114,6 +112,11 @@ export default async function DetailPage({
             </div>
             <h2 className="text-xl font-semibold mb-2">Overview</h2>
             <p className="text-gray-200 font-tenor">{details.overview}</p>
+
+            <div className="watchlist-but my-5">
+            <WatchlistButton tmdbId={id} mediaType={media_type} />
+            </div>
+
           </div>
         </div>
         <div className="fl ">

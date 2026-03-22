@@ -43,7 +43,7 @@ const MoviesPage = () => {
 
   if (loading) {
     return (
-      <div className="w-full max-w-7xl mx-auto 
+      <div className="w-full p-5 
       bg-gradient-to-r from-gray-900 via-purple-900 to-gray-800">
         <div className="animate-pulse space-y-8">
           <div className="heading-movies w-full flex justify-center pt-20 pb-8  sticky top-0 z-20">

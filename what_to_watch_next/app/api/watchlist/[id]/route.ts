@@ -5,9 +5,12 @@ import { NextResponse } from "next/server";
 
 
 
-export async function PATCH(req: Request, { params }: { params: { id: string } }) {
+export async function PATCH(
+    req: Request,
+    { params }: { params: Promise<{ id: string }> }
+) {
     try {
-        const watchlistItemId = params.id
+        const { id: watchlistItemId } = await params
 
         await dbConnect();
         const auth = await getUserFromRequest()
@@ -35,15 +38,20 @@ export async function PATCH(req: Request, { params }: { params: { id: string } }
 
 }
 
-export async function DELETE(req: Request, { params }: { params: { id: string } }) {
+export async function DELETE(
+    req: Request,
+    { params }: { params: Promise<{ id: string }> }
+) {
     try {
-        const watchlistItemId = params.id
+        const { id: watchlistItemId } = await params
 
         await dbConnect();
         const auth = await getUserFromRequest()
         const userId = auth.userId;
 
         const document = await removeFromWatchlist({ userId, watchlistItemId })
+        console.log("DELETE ID:", watchlistItemId)
+        console.log("USER ID:", userId)
         return NextResponse.json(
             { deletedItem: document },
             { status: 200 }
