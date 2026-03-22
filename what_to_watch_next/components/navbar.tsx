@@ -1,16 +1,16 @@
 "use client"
 
-import React from "react"
 import { Search, Clapperboard } from "lucide-react"
 import Link from "next/link"
 import { useAuth } from "@/components/providers/AuthProvider"
 import { useRouter } from "next/navigation"
+import NavbarSkeleton from "./Navbar-skeleton"
 
 const navbar = () => {
   const { user, loading, setUser } = useAuth()
   const router = useRouter()
 
-  if (loading) return null
+  if (loading) return <NavbarSkeleton/>
 
   const handleLogout = async () => {
     await fetch("/api/auth/logout", { method: "POST" })
@@ -35,7 +35,7 @@ const navbar = () => {
     bg-gradient-to-b from-purple-100/30 via-purple-200/30 to-purple-300/30 
     backdrop-blur-3xl text-white font-[500] font-josefin">
 
-      {/* LEFT */}
+     
       <div className="fl gap-3 cp whitespace-nowrap">
         <Clapperboard />
         <Link href="/">
@@ -45,20 +45,20 @@ const navbar = () => {
         </Link>
       </div>
 
-      {/* CENTER */}
+      
       <div className="fl gap-8 whitespace-nowrap">
         <Link href="/movies"><div className="cp options-rotators">Movies</div></Link>
         <Link href="/shows"><div className="cp options-rotators">TV Shows</div></Link>
         <Link href="/about"><div className="cp options-rotators">About</div></Link>
       </div>
 
-      {/* RIGHT */}
+   
       <div className="fl gap-6 whitespace-nowrap">
 
-        {/* AUTH */}
+        
         {user ? (
           <div className="fl gap-4">
-            <div className="text-green-400">Hello {user.name}</div>
+            <div className="text-green-300">Hello {user.name}</div>
 
             <Link href="/watchlist">
               <div className="cp options-rotators">Watchlist</div>
@@ -84,7 +84,7 @@ const navbar = () => {
           </div>
         )}
 
-        {/* SEARCH */}
+        
         <Link href={"/search"}> 
         <div className="search-nav group flex items-center gap-2 px-3 py-2 rounded-md bg-transparent overflow-hidden"> 
           <div className="search-icon transition-all lg:translate-x-30 lg:duration-300 lg:group-hover:-translate-x-0"> <Search /> </div> <div className="search-text transform lg:translate-y-6 lg:opacity-0 lg:transition-all lg:duration-300 lg:group-hover:translate-y-1 lg:group-hover:opacity-100"> Search A Movie or Show </div> </div> </Link>

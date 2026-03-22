@@ -1,5 +1,6 @@
 import { watchlistModel } from "../models/watchlist.model";
 import { watchlistInfo } from '../lib/interfaces/watchlist.interfaces'
+import mongoose from "mongoose";
 
 
 export async function addToWatchlist({ userId, tmdbId, mediaType }: watchlistInfo) {
@@ -43,14 +44,18 @@ export async function updateWatchStatus({ userId, watchlistItemId, status }: wat
     return item
 }
 
-export async function removeFromWatchlist({ userId, watchlistItemId }: watchlistInfo) {
-    const item = await watchlistModel.findById(watchlistItemId)
-    if (!item) {
-        throw new Error("Item not found");
-    }
-    if (item.userId.toString() !== userId) {
-        throw new Error("Unauthorized");
-    }
-    const deleteItem = await item.deleteOne()
-    return deleteItem
+export async function removeFromWatchlist({
+  userId,
+  watchlistItemId
+}: watchlistInfo) {
+  const deletedItem = await watchlistModel.findOneAndDelete({
+    _id: new mongoose.Types.ObjectId(watchlistItemId),
+    userId: new mongoose.Types.ObjectId(userId)
+  })
+
+  if (!deletedItem) {
+    throw new Error("Item not found or unauthorized")
+  }
+
+  return deletedItem
 }

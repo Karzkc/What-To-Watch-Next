@@ -48,7 +48,7 @@ const ShowsPage = () => {
 
   if (loading) {
     return (
-      <div className="w-full max-w-7xl mx-auto 
+      <div className="w-full p-5
       bg-gradient-to-b from-gray-900 via-blue-900 to-black ">
         <div className="animate-pulse space-y-8">
           <div className="heading-shows w-full flex justify-center pt-20 pb-8  sticky top-0 z-20">

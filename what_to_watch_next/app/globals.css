@@ -4,7 +4,10 @@
 @import "tw-animate-css";
 
 
-/* @custom-variant dark (&:is(.dark *)); */
+@keyframes shimmer {
+  0% { background-position: -200% 0; }
+  100% { background-position: 200% 0; }
+}
 
 *{
     box-sizing: border-box;
@@ -71,10 +74,8 @@ body {
 
 
 .hero-but {
-    /* border: 1px solid #e5e7eb; */
-    /* border-radius: 9999px; */
+    
     font-size: 2rem;
-    /* background-color: #fff; */
     color: black;
     transition: transform 0.3s ease-in-out;
 }

@@ -3,11 +3,14 @@ import { dbConnect } from "@/server/lib/db";
 import { watchlistModel } from "@/server/models/watchlist.model";
 import { NextResponse } from "next/server";
 
-export async function GET(req: Request, { params }: { params: Promise<{ tmdbId: string }> }) {
+export async function GET(req: Request, { params }: { params: { tmdbId: string } }) {
     await dbConnect()
 
     const { tmdbId } = await params
     const { userId } = await getUserFromRequest()
+
+    console.log("PARAM tmdbId:", tmdbId)
+    console.log("USER ID:", userId)
 
     const watchlist = await watchlistModel.findOne({
         userId,
@@ -15,14 +18,15 @@ export async function GET(req: Request, { params }: { params: Promise<{ tmdbId: 
     })
     if (watchlist) {
         return NextResponse.json({
-            "inWatchlist": true,
-            "status": "watching"
+            "exists": true,
+            "status": watchlist.status,
+            _id: watchlist.id
         })
     }
-    else{
+    else {
         return NextResponse.json({
-            "inWatchlist": false,
+            "exists": false,
         })
-        
+
     }
 }
