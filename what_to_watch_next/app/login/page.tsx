@@ -2,6 +2,7 @@
 import { useAuth } from '@/components/providers/AuthProvider'
 import { useRouter } from 'next/navigation'
 import React, { useState } from 'react'
+import { toast } from 'sonner'
 
 const page = () => {
   // bg gradient
@@ -74,8 +75,11 @@ const page = () => {
       const userData = await userRes.json()
       setUser(userData.user)
       router.push("/")
+      toast.success(`Welcome back ${userData.user.name} 😊`)
 
 
+    }catch{
+          toast.error("Authentication failed")
     } finally {
       setLoading(false)
     }
@@ -88,6 +92,8 @@ const page = () => {
     const data = await res.json()
     setUser(data.user)
     router.push("/")
+    toast.info("Signed in as guest!")
+    
   }
 
   return (

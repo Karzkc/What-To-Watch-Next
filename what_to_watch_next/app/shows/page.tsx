@@ -48,10 +48,10 @@ const ShowsPage = () => {
 
   if (loading) {
     return (
-      <div className="w-full p-5
+      <div className="w-full p-5  lg:pt-0 pt-30
       bg-gradient-to-b from-gray-900 via-blue-900 to-black ">
         <div className="animate-pulse space-y-8">
-          <div className="heading-shows w-full flex justify-center pt-20 pb-8  sticky top-0 z-20">
+          <div className="heading-shows w-full flex justify-center pt-20 pb-8 lg:top-0 sm:top-14 top-25  sticky  z-20">
             <div className='text-4xl font-bold tracking-tight 
             text-white font-playfair'>Explore Shows</div>
           </div>
@@ -71,11 +71,11 @@ const ShowsPage = () => {
   }
 
   return (
-    <div className='Shows relative w-full min-h-screen flex flex-col 
+    <div className='Shows relative w-full min-h-screen flex flex-col  lg:pt-0 pt-30
     bg-gradient-to-b from-gray-900 via-blue-900 to-black  items-start z-10'>
 
-      <div className="heading-shows w-full flex justify-center pt-20 pb-8 backdrop-blur-3xl sticky sm:top-0 top-12 z-20">
-        <div className='text-4xl font-bold tracking-tight 
+      <div className="heading-shows w-full flex justify-center pt-20 pb-8 backdrop-blur-3xl sticky lg:top-0 sm:top-14 top-25 z-20">
+        <div className='text-4xl font-bold tracking-tight mt-5 
         text-white font-playfair'>Explore Shows</div>
       </div>
 

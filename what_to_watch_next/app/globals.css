@@ -1,5 +1,4 @@
-@import url('styles/fonts.css');
-@import url('styles/media-query.css');
+
 @import "tailwindcss";
 @import "tw-animate-css";
 
@@ -235,7 +234,7 @@ body {
 }
 
 /* Media query */
-@media (max-width:425px)  {
+/* @media (max-width:425px)  {
     .Navbar{
         flex-direction: column;
         justify-content: center;
@@ -249,5 +248,5 @@ body {
         justify-content: space-between;
         width: 100%;
 }
-}
+} */
 

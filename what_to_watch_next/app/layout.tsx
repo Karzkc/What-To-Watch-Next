@@ -13,7 +13,7 @@ import "./globals.css";
 import Navbar from "components/navbar";
 import Footer from "components/Footer";
 import { Providers } from "@/components/providers/Providers"
-
+import { Toaster } from "@/components/ui/sonner"
 
 // 🎬 Font Imports
 const cinzel = Cinzel({
@@ -79,6 +79,7 @@ export default function RootLayout({
             <Navbar />
           </div>
           {children}
+          <Toaster richColors position="bottom-right" />
           <Footer />
         </Providers>
       </body>
