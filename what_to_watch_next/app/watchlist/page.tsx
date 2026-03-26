@@ -3,7 +3,7 @@
 import { useEffect, useState } from "react"
 import { useAuth } from "@/components/providers/AuthProvider"
 import { useRouter } from "next/navigation"
-import Link from "next/link"
+import { toast } from "sonner"
 import {
     Select,
     SelectContent,
@@ -69,8 +69,10 @@ export default function WatchlistPage() {
             })
 
             setWatchlist((prev) => prev.filter((item) => item._id !== id))
+            toast.warning("Removed from Watchlist!")
         } catch (err) {
             console.error(err)
+            toast.error("Failed to remove item")
         }
     }
 
@@ -98,6 +100,7 @@ export default function WatchlistPage() {
                     item._id === id ? { ...item, status: data.updatedItem.status } : item
                 )
             )
+            toast.info(`Changed status to ${status}`)
         } catch (err) {
             console.error(err)
         }
@@ -127,21 +130,28 @@ export default function WatchlistPage() {
     }
 
     return (
-        <div className={`min-h-screen ${bg} text-white pt-24 px-10  overflow-y-auto`}>
-            <h1 className="text-3xl font-semibold mb-8 font-cinzel">My Watchlist</h1>
+        <div className={`min-h-screen ${bg} text-white pt-48 lg:pt-24 px-4 sm:px-6 lg:px-10 pb-20`}>
 
-            <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-6">
+            {/* TITLE */}
+            <h1 className="text-xl sm:text-2xl lg:text-3xl font-semibold mb-6 font-cinzel 
+                    bg-white/10 rounded-md mx-auto w-max px-20 py-3 flb">
+                My Watchlist
+            </h1>
+
+            {/* GRID */}
+            <div className="grid p-3 grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-4 sm:gap-6">
+
                 {watchlist.map((item) => (
-                    console.log("ITEM FRONTEND:", item),
-                    <Link
-                        href={`/details/${item.mediaType}/${item.tmdbId}`}
+                    <div
                         key={item._id}
-                        className="group block rounded-xl overflow-hidden
+                        onClick={() => router.push(`/details/${item.mediaType}/${item.tmdbId}`)}
+                        className="group block rounded-xl overflow-hidden cursor-pointer
                         bg-white/5 backdrop-blur-lg border border-white/10
-                       hover:scale-[1.04] transition-all duration-300"
+                        hover:scale-[1.03] transition-all duration-300"
                     >
 
-                        <div className="w-full h-60 bg-white/10">
+                        {/* IMAGE */}
+                        <div className="w-full aspect-[2/3] bg-white/10">
                             {item.posterPath ? (
                                 <img
                                     src={`https://image.tmdb.org/t/p/w500${item.posterPath}`}
@@ -149,21 +159,27 @@ export default function WatchlistPage() {
                                     className="w-full h-full object-cover"
                                 />
                             ) : (
-                                <div className="w-full h-full flex items-center justify-center text-xs text-gray-400">
+                                <div className="w-full h-full flex items-center justify-center text-[10px] text-gray-400">
                                     No Image
                                 </div>
                             )}
                         </div>
 
+                        {/* CONTENT */}
+                        <div className="p-1 sm:p-3 bg-gradient-to-b from-transparent to-black/40">
 
-                        <div className="p-3 bg-gradient-to-b from-transparent to-black/40">
-                            <h2 className="text-sm font-medium line-clamp-2 font-playfair">
+                            {/* TITLE */}
+                            <h2 className="text-[10px] sm:text-xs lg:text-sm font-medium line-clamp-2 font-playfair">
                                 {item.title || "Unknown"}
                             </h2>
 
+                            {/* CONTROLS */}
+                            <div className="flex flex-wrap justify-between items-center mt-2 gap-1">
 
-                            <div className="flex justify-between items-center mt-2 font-tenor">
-                                <div className="fl gap-2">
+                                {/* LEFT SIDE */}
+                                <div className="flex gap-1 items-center flex-wrap">
+
+                                    {/* STATUS */}
                                     <Select
                                         value={item.status}
                                         onValueChange={(value) =>
@@ -175,20 +191,16 @@ export default function WatchlistPage() {
                                         }
                                     >
                                         <SelectTrigger
-                                            onClick={(e) => {
-                                                e.preventDefault()
-                                                e.stopPropagation()
-                                            }}
-                                            className="h-7 px-3 text-[11px] rounded-full
-                                         bg-purple-500/20 text-purple-300
+                                            onClick={(e) => e.stopPropagation()}
+                                            className="h-5 sm:h-7 py-0 px-2 text-[8px] sm:text-[11px] rounded-full
+                                            bg-purple-500/20 text-purple-300
                                             border border-purple-400/20
-                                            hover:bg-purple-500/30
-                                            transition-all duration-200
                                             flex items-center gap-1
-                                            [&>svg]:w-3 [&>svg]:h-3 [&>svg]:opacity-70
-                                            focus:ring-0 focus:outline-none cp"
+                                            [&>svg]:w-3 [&>svg]:h-3
+                                            whitespace-nowrap
+                                            focus:ring-0 focus:outline-none"
                                         >
-                                            <SelectValue placeholder="Status" />
+                                            <SelectValue />
                                         </SelectTrigger>
 
                                         <SelectContent className="bg-[#0f172a] border border-white/10 text-white">
@@ -197,21 +209,30 @@ export default function WatchlistPage() {
                                             <SelectItem value="completed">Completed</SelectItem>
                                         </SelectContent>
                                     </Select>
-                                    <span className="text-[10px] px-2 py-1 rounded-full bg-blue-500/20 text-purple-300 capitalize">
+
+                                    {/* MEDIA TYPE */}
+                                    <span className="text-[8px] sm:text-[10px] px-2 py-0.5 rounded-full 
+    bg-blue-500/20 text-blue-300 capitalize whitespace-nowrap">
                                         {item.mediaType}
                                     </span>
                                 </div>
 
+                                {/* REMOVE */}
                                 <button
-                                    onClick={(e) => handleRemove(e, item._id)}
-                                    className="text-[10px] px-2 py-1 rounded-full 
-                                    bg-red-500/20 text-red-300 hover:bg-red-500/30 transition cursor-"
+                                    onClick={(e) => {
+                                        e.stopPropagation()
+                                        handleRemove(e, item._id)
+                                    }}
+                                    className="text-[8px] sm:text-[10px] px-2 py-0.5 rounded-full 
+    bg-red-500/20 text-red-300 hover:bg-red-500/30 transition whitespace-nowrap"
                                 >
                                     Remove
                                 </button>
+
                             </div>
                         </div>
-                    </Link>
+
+                    </div>
                 ))}
             </div>
         </div>

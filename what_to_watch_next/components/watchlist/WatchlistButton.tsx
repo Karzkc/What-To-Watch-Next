@@ -4,7 +4,7 @@ import { useEffect, useState } from "react"
 import { useAuth } from "@/components/providers/AuthProvider"
 import { useRouter } from "next/navigation"
 import { Bookmark, Check } from "lucide-react"
-
+import { toast } from "sonner"
 
 
 export default function WatchlistButton({
@@ -38,6 +38,7 @@ export default function WatchlistButton({
                 setWatchlist(data)
             } catch (err) {
                 console.error(err)
+                toast.error("Failed to update watchlist")
             } finally {
                 setLoading(false)
             }
@@ -49,6 +50,7 @@ export default function WatchlistButton({
     const handleAdd = async () => {
         if (!user) {
             router.push("/login")
+            toast.warning("Login to use these features!")
             return
         }
 
@@ -75,6 +77,7 @@ export default function WatchlistButton({
                 status: data.status,
                 _id: data._id
             })
+            toast.success("Added to Watchlist")
         } catch (err) {
             console.error(err)
         } finally {

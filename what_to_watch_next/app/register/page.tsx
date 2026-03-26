@@ -3,6 +3,7 @@
 import { useAuth } from "@/components/providers/AuthProvider"
 import { useRouter } from "next/navigation"
 import { useState } from "react"
+import { toast } from "sonner"
 
 const page = () => {
 
@@ -77,8 +78,11 @@ const page = () => {
       const userData = await userRes.json()
       setUser(userData.user)
       router.push("/")
+      toast.success(`Successfully signed in as ${userData.user.name}!`)
 
 
+    } catch {
+      toast.error("Authentication failed")
     } finally {
       setLoading(false)
     }
@@ -90,6 +94,7 @@ const page = () => {
     const data = await res.json()
     setUser(data.user)
     router.push("/")
+    toast.info("Signed in as guest!")
   }
 
 
@@ -136,7 +141,7 @@ const page = () => {
             )}
           </div>
 
-        
+
           <div>
             <input
               name="email"
@@ -151,7 +156,7 @@ const page = () => {
             )}
           </div>
 
-          
+
           <div>
             <input
               name="password"
@@ -166,7 +171,7 @@ const page = () => {
             )}
           </div>
 
-         
+
           <div>
             <input
               name="confirmPassword"
@@ -181,7 +186,7 @@ const page = () => {
             )}
           </div>
 
-        
+
           <button
             disabled={loading}
             className="mt-2 py-2 rounded-md bg-purple-500 hover:bg-purple-600 transition-all font-josefin  cp disabled:opacity-50"
@@ -191,14 +196,14 @@ const page = () => {
 
         </div>
 
-        
+
         <div className="flex items-center gap-3 my-6 text-white/50 text-sm font-josefin">
           <div className="flex-1 h-[1px] bg-white/20"></div>
           or
           <div className="flex-1 h-[1px] bg-white/20"></div>
         </div>
 
-        
+
         <button
           type="button"
           onClick={handleGuest}
@@ -207,7 +212,7 @@ const page = () => {
           Continue as Guest
         </button>
 
-        
+
         <div className="text-center mt-6 text-sm text-white/70 font-josefin">
           Already have an account?{" "}
           <span
