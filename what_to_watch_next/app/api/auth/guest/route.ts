@@ -24,7 +24,10 @@ export async function POST() {
             isGuest: true,
         });
 
-        const token = await tokenGenerator(guestUser._id.toString(), guestUser.role);
+        const token = await tokenGenerator(
+            guestUser._id.toString(),
+            guestUser.role!
+        )
 
         cookieStore.set("token", token, {
             httpOnly: true,
