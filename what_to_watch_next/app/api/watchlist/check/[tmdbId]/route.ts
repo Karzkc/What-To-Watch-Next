@@ -3,7 +3,8 @@ import { dbConnect } from "@/server/lib/db";
 import { watchlistModel } from "@/server/models/watchlist.model";
 import { NextResponse } from "next/server";
 
-export async function GET(req: Request, { params }: { params: { tmdbId: string } }) {
+export async function GET(req: Request, 
+    { params }: { params: Promise<{ tmdbId: string }> }) {
     await dbConnect()
 
     const { tmdbId } = await params

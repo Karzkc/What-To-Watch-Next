@@ -2,11 +2,10 @@ import { NextResponse } from "next/server"
 
 export async function GET(
     req: Request,
-    { params }: { params: { mediaType: string; id: string } }
-) {
-    
+    { params }: { params: Promise<{ mediaType: string; id: string }> }) {
+
     const { mediaType, id } = await params
-   
+
     if (!["movie", "tv"].includes(mediaType)) {
         return NextResponse.json({ error: "Invalid Media Type!" }, { status: 400 })
     }
