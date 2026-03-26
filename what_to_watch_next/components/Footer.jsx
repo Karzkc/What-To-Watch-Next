@@ -11,7 +11,8 @@ const Footer = () => {
             <span className="fl flex-col gap-2  font-[600]">
 
                 <span className='flb gap-2 font-playfair '>
-                    Made with ❤️ by Kartik
+                    Made by Kartik
+                    {/* Made with ❤️ by Kartik */}
                     <Link
                         href="https://github.com/karzkc"
                         target="_blank"
