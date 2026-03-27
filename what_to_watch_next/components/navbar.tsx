@@ -6,12 +6,14 @@ import Link from "next/link"
 import { useAuth } from "@/components/providers/AuthProvider"
 import { useRouter } from "next/navigation"
 import { toast } from "sonner"
+import NavbarSkeleton from "./Navbar-skeleton"
+
 
 const Navbar = () => {
   const { user, loading, setUser } = useAuth()
   const router = useRouter()
 
-  if (loading) return null
+  if (loading) return <NavbarSkeleton />
 
   const handleLogout = async () => {
     try {
@@ -19,7 +21,7 @@ const Navbar = () => {
       setUser(null)
       router.push("/")
       toast.warning("Logged out!")
-      
+
     } catch (error) {
       toast.error("Logout Failed")
     }
@@ -28,16 +30,16 @@ const Navbar = () => {
   const handleGuest = async () => {
     try {
       await fetch("/api/auth/guest", { method: "POST" })
-  
+
       const res = await fetch("/api/auth/me", {
         credentials: "include",
       })
       const data = await res.json()
-  
+
       setUser(data.user)
       router.push("/")
       toast.info("Signed in as guest!")
-      
+
     } catch (error) {
       toast.error("Guest login failed")
     }
