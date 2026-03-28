@@ -34,7 +34,6 @@ export default function WatchlistButton({
                     credentials: "include"
                 })
                 const data = await res.json()
-                console.log("CHECK API RESPONSE:", data)
                 setWatchlist(data)
             } catch (err) {
                 console.error(err)

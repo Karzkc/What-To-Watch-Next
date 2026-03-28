@@ -50,8 +50,7 @@ export async function DELETE(
         const userId = auth.userId;
 
         const document = await removeFromWatchlist({ userId, watchlistItemId })
-        console.log("DELETE ID:", watchlistItemId)
-        console.log("USER ID:", userId)
+        
         return NextResponse.json(
             { deletedItem: document },
             { status: 200 }

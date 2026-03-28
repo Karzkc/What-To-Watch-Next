@@ -5,7 +5,7 @@
     * Mongoose cache interface - as ts doesnt know what shape global.mongoose has (causes type error)
 
     * No any → ESLint happy (npm run build passes)
-    IntelliSense → cached.conn. shows all Mongoose methods
+    IntelliSense → cach xcvbhj ed.conn. shows all Mongoose methods
     Type safety → cached.conn.query() won't error
     Self-documenting → anyone reads → instantly understands
 

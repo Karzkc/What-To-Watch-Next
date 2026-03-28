@@ -9,7 +9,7 @@ if (!JWT_SECRET) {
 export function verifyToken(token:string): any {
     try {
        const payload = jwt.verify(token,JWT_SECRET) 
-    //    console.log(payload)
+    
        return payload
     } catch (error) {
         throw new Error("Invalid Token")

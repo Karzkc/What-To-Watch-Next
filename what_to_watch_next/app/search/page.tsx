@@ -38,7 +38,7 @@ const SearchPage = () => {
   }, [query]);
 
   return (
-    <div className="h-[100vh]  flex flex-col items-center pt-16
+    <div className="h-[100vh]  flex flex-col items-center pt-35 md:pt-18
     text-white">
       <Background />
       <div className="w-full mt-15 max-w-2xl px-4">

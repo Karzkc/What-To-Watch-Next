@@ -75,7 +75,7 @@ const MoviesPage = () => {
 
       <div className="movies-sections flex flex-col w-full gap-12 px-12 py-8">
 
-        {/* Genre */}
+        {/*genre */}
 
         <section className="w-full  rounded-lg 
         bg-black/80 backdrop-blur-3xl " >

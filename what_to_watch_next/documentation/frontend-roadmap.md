@@ -1,7 +1,6 @@
-Now that the **backend is essentially complete**, the frontend work should follow a clear order so you don’t build UI that later needs rework.
 
-Below is a **clean, practical UI implementation roadmap** for your app.
-frontend done
+
+
 ---
 
 # Phase 1 — Authentication UI

@@ -5,7 +5,7 @@ import React, { useState } from 'react'
 import { toast } from 'sonner'
 
 const page = () => {
-  // bg gradient
+  // bg 
   const gradients = [
     "bg-gradient-to-br from-[#020617] via-[#0f172a] to-[#1e293b]",
     "bg-gradient-to-br from-[#020024] via-[#090979] to-[#000000]",
@@ -64,7 +64,7 @@ const page = () => {
 
       if (!res.ok) {
         if (data.errors) {
-          setErrors(data.errors)   // 🔥 handles Zod
+          setErrors(data.errors)   
         } else {
           setErrors({ general: data.error })
         }

@@ -1,6 +1,5 @@
 "use client"
 
-import * as React from "react"
 import Link from "next/link"
 import Image from "next/image"
 
@@ -66,7 +65,7 @@ export default function SimilarSlider({
         </div>
       </div>
 
-      {/* desktop  */}
+    
       <Carousel
         opts={{ align: "start", loop: false }}
         className="hidden lg:flex px-5"

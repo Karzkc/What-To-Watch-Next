@@ -15,7 +15,7 @@ import Footer from "components/Footer";
 import { Providers } from "@/components/providers/Providers"
 import { Toaster } from "@/components/ui/sonner"
 
-// 🎬 Font Imports
+
 const cinzel = Cinzel({
   variable: "--font-cinzel",
   subsets: ["latin"],

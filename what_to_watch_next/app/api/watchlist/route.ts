@@ -67,7 +67,6 @@ export async function GET(req: Request) {
                     )
 
                     const data = await res.json()
-                    console.log("RAW ITEM:", item)
                     return {
                         _id: item._id,
                         tmdbId: item.tmdbId || item.tmdb_id,

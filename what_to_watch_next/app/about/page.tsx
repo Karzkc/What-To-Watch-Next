@@ -19,7 +19,7 @@ const About = () => {
                     zIndex: 0,
                     filter: 'blur(12px) brightness(0.8)'
                 }}
-                className="absolute top-0 left-0 w-full h-full" 
+                className="absolute top-0 left-0 w-full h-full"
                 priority
             />
 
@@ -58,23 +58,21 @@ const About = () => {
                         About Me
                     </h2>
 
-                    <div className="max-w-2xl w-full  p-10 lg:p-6 mb-10
+                    <div className="max-w-2xl w-full p-10 lg:p-6 mb-10
                         border bg-gradient-to-br rounded-xl from-purple-700/90 to-fuchsia-900/70 backdrop-blur-sm shadow-xl shadow-purple-800/80
-                        border-purple-500/60 mx-auto font-tenor">
+                         border-purple-500/60 mx-auto font-tenor">
 
-                        <p className="text-sm lg:text-lg leading-relaxed text-center 
-                        text-white/90">
-                            Hey, I’m&nbsp;
-                            <span className="font-semibold text-purple-300"> Kartik Khiriya</span>
-                             — a cinephile and coding enthusiast, currently hooked on building this movie & TV explorer app (and binging something new every time).
+                        <p className="text-sm lg:text-lg leading-relaxed text-center text-white/90">
+                            Hi, I’m <span className="font-semibold text-purple-300">Kartik Khiriya</span>.
+                            I enjoy building things on the web and watching movies and shows in my free time.
                             <br /><br />
 
-                            Coding is something that im doing for a long time now. I’m passionate about experimenting with cool UIs, blending movies, shows, and my love for slick web interactions—this project is a fusion of both! I’ve been crafting this app for a month now and learning as I go (not just about JS, but also plot twists ✨).
+                            I’ve been learning and working with web development for a while, and this project is something I built to combine both interests. While creating it, I focused on improving my frontend as well as backend skills and understanding how to structure a full-stack app properly.
                             <br /><br />
 
-                            Besides debugging and deploying, you’ll find me exploring underrated films, tracking new releases, and occasionally recommending hidden gems. Whether it’s for the next binge session or a coding problem, I’m always up for a new challenge.
+                            Outside of coding, I like exploring different films, keeping track of new releases, and sometimes revisiting older ones. This app is mainly a small project where I could practice, experiment, and build something useful at the same time.
                         </p>
-                    </div>
+                    </div> 
 
                     <div className="max-w-2xl w-full flex flex-col items-center p-6 mt-4
                     rounded-xl bg-gradient-to-br from-purple-700/70 to-fuchsia-900/50  shadow-xl ">
@@ -82,7 +80,7 @@ const About = () => {
                         <span className="text-2xl mb-3  
                         font-bold text-purple-200 font-forum ">Contact & Socials</span>
                         <p className=" text-white/80 mb-5 text-center font-tenor text-sm lg:text-lg">
-                            Love chatting about movies, tech, or want to collaborate? Drop a DM—I’d love to connect!
+                            Love chatting about movies, tech, or want to collaborate? Drop a DM,I’d love to connect!
                         </p>
                         <div className="flex flex-wrap justify-center gap-5 mb-2">
                             <Link href="https://www.instagram.com/kartikk_0803/" target="_blank" rel="noopener noreferrer">
@@ -120,10 +118,10 @@ const About = () => {
                         </div>
                         <div className="text-sm text-purple-200 mt-2">Or email: kartikkhiriya3@gmail.com</div>
                     </div>
-                        <Note />
+                    <Note />
                 </div>
             </section>
-            
+
         </div>
     );
 };

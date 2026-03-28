@@ -132,13 +132,13 @@ export default function WatchlistPage() {
     return (
         <div className={`min-h-screen ${bg} text-white pt-48 lg:pt-24 px-4 sm:px-6 lg:px-10 pb-20`}>
 
-            {/* TITLE */}
+           
             <h1 className="text-xl sm:text-2xl lg:text-3xl font-semibold mb-6 font-cinzel 
                     bg-white/10 rounded-md mx-auto w-max px-20 py-3 flb">
                 My Watchlist
             </h1>
 
-            {/* GRID */}
+           
             <div className="grid p-3 grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-4 sm:gap-6">
 
                 {watchlist.map((item) => (
@@ -150,7 +150,7 @@ export default function WatchlistPage() {
                         hover:scale-[1.03] transition-all duration-300"
                     >
 
-                        {/* IMAGE */}
+                        {/* poster img */}
                         <div className="w-full aspect-[2/3] bg-white/10">
                             {item.posterPath ? (
                                 <img
@@ -165,21 +165,21 @@ export default function WatchlistPage() {
                             )}
                         </div>
 
-                        {/* CONTENT */}
+                        {/* bottom */}
                         <div className="p-1 sm:p-3 bg-gradient-to-b from-transparent to-black/40">
 
-                            {/* TITLE */}
+                            
                             <h2 className="text-[10px] sm:text-xs lg:text-sm font-medium line-clamp-2 font-playfair">
                                 {item.title || "Unknown"}
                             </h2>
 
-                            {/* CONTROLS */}
+                           
                             <div className="flex flex-wrap justify-between items-center mt-2 gap-1">
 
-                                {/* LEFT SIDE */}
+                             
                                 <div className="flex gap-1 items-center flex-wrap">
 
-                                    {/* STATUS */}
+                                    {/* select opt */}
                                     <Select
                                         value={item.status}
                                         onValueChange={(value) =>
@@ -210,14 +210,14 @@ export default function WatchlistPage() {
                                         </SelectContent>
                                     </Select>
 
-                                    {/* MEDIA TYPE */}
+                                    
                                     <span className="text-[8px] sm:text-[10px] px-2 py-0.5 rounded-full 
     bg-blue-500/20 text-blue-300 capitalize whitespace-nowrap">
                                         {item.mediaType}
                                     </span>
                                 </div>
 
-                                {/* REMOVE */}
+                                
                                 <button
                                     onClick={(e) => {
                                         e.stopPropagation()

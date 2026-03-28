@@ -6,6 +6,7 @@ import { useAuth } from "../providers/AuthProvider"
 import { useRouter } from "next/navigation"
 
 const LABELS: Record<number, string> = {
+
   1: "Terrible",
   2: "Meh",
   3: "Decent",
@@ -20,7 +21,7 @@ interface RatingProps {
 
 export default function Rating({ tmdbId, mediaType }: RatingProps) {
   const [currentRating, setCurrentRating] = useState<number>(0)
-  const ratingIdRef = useRef<string | null>(null) // ref avoids stale closure
+  const ratingIdRef = useRef<string | null>(null) 
   const [hovered, setHovered] = useState<number>(0)
   const [loading, setLoading] = useState(true)
   const [submitting, setSubmitting] = useState(false)
@@ -44,7 +45,7 @@ export default function Rating({ tmdbId, mediaType }: RatingProps) {
         }
       } catch {
         toast.error("Failed to update rating")
-        // silently fail
+        
       } finally {
         setLoading(false)
       }
@@ -65,10 +66,10 @@ export default function Rating({ tmdbId, mediaType }: RatingProps) {
     }
     if (submitting) return
 
-    // Always read from ref — never stale, unlike state inside a closure
+   
     const currentId = ratingIdRef.current
 
-    // Clicking same star = delete
+   
     if (star === currentRating && currentId) {
       setSubmitting(true)
       try {
@@ -87,7 +88,7 @@ export default function Rating({ tmdbId, mediaType }: RatingProps) {
     setSubmitting(true)
     try {
       if (currentId) {
-        // PATCH existing rating
+      
         const res = await fetch(`/api/rating/${currentId}`, {
           method: "PATCH",
           headers: { "Content-Type": "application/json" },
@@ -98,7 +99,7 @@ export default function Rating({ tmdbId, mediaType }: RatingProps) {
           toast.success("Rating updated!")
         }
       } else {
-        // POST new rating
+      
         const res = await fetch("/api/rating", {
           method: "POST",
           headers: { "Content-Type": "application/json" },
@@ -107,7 +108,7 @@ export default function Rating({ tmdbId, mediaType }: RatingProps) {
         if (res.ok) {
           const data = await res.json()
           setCurrentRating(star)
-          ratingIdRef.current = data.rating._id // store in ref immediately
+          ratingIdRef.current = data.rating._id 
           toast.success("Rating saved!")
         }
       }
@@ -131,13 +132,17 @@ export default function Rating({ tmdbId, mediaType }: RatingProps) {
           ))}
         </div>
       ) : (
+
+
         <div className="flex items-center gap-1">
           {[1, 2, 3, 4, 5].map((star) => {
             const filled = star <= display
             return (
               <button
+
                 key={star}
                 onClick={() => handleRate(star)}
+
                 onMouseEnter={() => setHovered(star)}
                 onMouseLeave={() => setHovered(0)}
                 disabled={submitting}
@@ -163,6 +168,7 @@ export default function Rating({ tmdbId, mediaType }: RatingProps) {
             )
           })}
 
+
           <span
             className={`
               ml-3 text-sm font-cormorant italic transition-all duration-200
@@ -174,7 +180,9 @@ export default function Rating({ tmdbId, mediaType }: RatingProps) {
               }
             `}
           >
-            {LABELS[display] ?? ""}
+
+
+             {LABELS[display] ?? ""}
           </span>
         </div>
       )}

@@ -10,7 +10,7 @@ export async function PATCH(
 ) {
   try {
     await dbConnect();
-    const { id: ratingId } = await params; // await params — Next.js 15 requirement
+    const { id: ratingId } = await params; 
     const { userId } = await getUserFromRequest();
     const body = await req.json();
     const { rating } = updateRatingSchema.parse(body);
@@ -34,7 +34,7 @@ export async function DELETE(
 ) {
   try {
     await dbConnect();
-    const { id: ratingId } = await params; // await params — Next.js 15 requirement
+    const { id: ratingId } = await params;
     const { userId } = await getUserFromRequest();
     const document = await removeRating({ userId, ratingId });
     return NextResponse.json({ deleted: document }, { status: 200 });

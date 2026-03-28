@@ -10,8 +10,6 @@ export async function GET(req: Request,
     const { tmdbId } = await params
     const { userId } = await getUserFromRequest()
 
-    console.log("PARAM tmdbId:", tmdbId)
-    console.log("USER ID:", userId)
 
     const watchlist = await watchlistModel.findOne({
         userId,

@@ -19,7 +19,7 @@ const page = () => {
   const [errors, setErrors] = useState<any>({})
   const [loading, setLoading] = useState(false)
 
-  // bg gradient
+  // bg 
   const gradients = [
     "bg-gradient-to-br from-[#020617] via-[#0f172a] to-[#1e293b]",
     "bg-gradient-to-br from-[#020024] via-[#090979] to-[#000000]",

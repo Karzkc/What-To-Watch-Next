@@ -61,7 +61,7 @@ const Recommended = () => {
     return (
       <div className="w-full min-h-[320px] mx-auto 
       bg-gradient-to-tr from-gray-900 via-indigo-900 to-purple-900 flex flex-col justify-center items-center ">
-        <Note />
+        {/* <Note /> */}
         <div className="animate-pulse space-y-8 w-full flex flex-col items-center">
           <div className="h-8 rounded w-48
            bg-gray-800 mb-4"></div>
@@ -94,7 +94,7 @@ const Recommended = () => {
   return (
     <div className="trending relative w-full max-w-8xl mx-auto mb-10 
     bg-gradient-to-tr from-gray-900 via-indigo-900 to-purple-900 rounded-xl py-8 px-2">
-      <Note />
+      {/* <Note /> */}
 
 
       
