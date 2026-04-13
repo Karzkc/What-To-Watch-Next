@@ -59,7 +59,7 @@ export async function GET(req: Request) {
 
         const apiKey = process.env.TMDB_API_KEY
 
-        const enriched = await Promise.all(
+        const enriched = await Promise.all( // adding extra data liek title poster etc
             watchlist.map(async (item: any) => {
                 try {
                     const res = await fetch(
